@@ -1,0 +1,134 @@
+body{
+    background-color: var(--bg-lightblue);
+    width: 100vw;
+    height: 100vh;
+}
+
+.site{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    grid-template-columns: 1fr;
+    grid-template-rows: 8% 5% 82% 5%;
+}
+
+.header{
+    grid-area: 1 / 1;
+    background-color: var(--bg-black);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+}
+.logo{
+    width: 5rem;
+}
+.site_title{
+    font-size: 3rem;
+}
+.navbar{
+    grid-area: 2 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    background-color: var(--bg-black);
+    color: var(--white);
+    list-style: none;
+    height: 100%;
+    border-top: solid var(--bg-gray) 1px;
+    font-size: 1.5rem;
+}
+.ul-navbar{
+    display: flex;
+}
+.ul-navbar.active{
+    display: flex;
+}
+.li-navbar{
+    display: inline-block;
+}
+.lnk-navbar{
+    text-decoration: none;
+    color: var(--white);
+    padding: 1.1rem 1rem;
+}
+.main{
+    grid-area: 3 / 1;
+    background-color: var();
+    height: 100%;
+    background-color: #fff;
+}
+.footer{
+    grid-area: 4 / 1;
+    background-color: var(--bg-black);
+    text-align: center;
+    padding: 1.5rem 0;
+    font-size: 1.5rem;
+    height: 100%;
+}
+.header, .footer{ color: var(--white);}
+.nav-burger{
+    font-size: 2.5rem;
+    color: var(--white);
+    background-color: var(--bg-black);
+    border: none;
+    cursor: pointer;
+}
+.fa.fa-bars{ font-size: 2.5rem;}
+
+@media screen and (min-width: 1024px) {
+    .site{
+        grid-template-columns: 20% 1fr 20%;
+        grid-template-rows: 8% 5% 82% 5%;
+    }
+    .header{
+        grid-area: 1 / 2;
+    }
+    .navbar{
+        grid-area: 2 / 2;
+    }
+    .main{
+        grid-area: 3 / 2;
+    }
+    .footer{
+        grid-area: 4 / 2;
+    }
+    .nav-burger {
+        display: none;
+    }
+    .navbar{
+        justify-content: center;
+    }
+    .ul-navbar {
+        display: flex;
+    }
+    .li-navbar{
+
+    }
+    .lnk-navbar {
+        display: inline-block;
+        position: relative;
+        transition: border var(--transition-duration) var(--transition-function);
+    }
+    .lnk-navbar:hover{
+        background-color: var(--white);
+        color: var(--bg-black);
+    }
+
+    .lnk-navbar::after {
+        content: "";
+        display: block;
+        height: .25rem;
+        width: 0;
+        position: absolute;
+        left: 0;
+        bottom: -.5rem;
+        background-color: var(--primary-color);
+        transition: width .3s ease;
+    }
+
+    .lnk-navbar.active::after, .lnk-navbar:hover::after  {
+        width: 100%;
+    }
+
+}
