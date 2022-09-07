@@ -57,6 +57,7 @@ body{
     background-color: var();
     height: 100%;
     background-color: #fff;
+    overflow-y:auto;
 }
 .footer{
     grid-area: 4 / 1;
@@ -75,6 +76,19 @@ body{
     cursor: pointer;
 }
 .fa.fa-bars{ font-size: 2.5rem;}
+
+.formCreate{
+    white-space: pre-line;
+}
+.formCreate *{
+    margin: .5rem 0;
+}
+.cellList{
+    border: solid black 1px;
+    width: 125px;
+    height: 50px;
+    display: inline-block;
+}
 
 @media screen and (min-width: 1024px) {
     .site{

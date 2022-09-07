@@ -32,6 +32,6 @@ include "globals.php";
         <button id="mobile-button" class="nav-burger"><i id="mobile-icon" class="fa fa-bars" aria-hidden="true"></i></button>
     </nav>
     <main class="main">
-        gkjdhsfkjghdlkjfcgxhkjvgxhvckjdhcxkj
+        <?php  include "switch.php"; ?>
     </main>
 <?=$footer?>

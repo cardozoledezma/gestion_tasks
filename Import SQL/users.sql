@@ -1,0 +1,10 @@
+insert into users (user_name, password) values ('mcruz0', 'yUyncQgfge');
+insert into users (user_name, password) values ('nlippard1', 'aWpBJq');
+insert into users (user_name, password) values ('sfoynes2', '0zQUpNfXRM');
+insert into users (user_name, password) values ('ewindus3', '5KN2tz6FD');
+insert into users (user_name, password) values ('abaniard4', '261TGKO');
+insert into users (user_name, password) values ('mgrealey5', 'N9dWJRKTB');
+insert into users (user_name, password) values ('dbru6', 'z046EwpCquXv');
+insert into users (user_name, password) values ('worrill7', '1kGJxC5l8');
+insert into users (user_name, password) values ('clamont8', 'aFKKQeNLIo');
+insert into users (user_name, password) values ('jcreigan9', '0HxLqrhB');
