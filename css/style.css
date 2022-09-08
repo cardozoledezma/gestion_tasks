@@ -83,6 +83,10 @@ body{
 .formCreate *{
     margin: .5rem 0;
 }
+.sort_list{
+    width: 100%;
+    padding: 2rem 1rem;
+}
 .cellList{
     border: solid black 1px;
     width: 100%;
@@ -101,10 +105,22 @@ body{
 }
 .description{
     text-align: left;
-    padding-left: 1.5rem;
+    padding: 0 1.5rem;
     align-items: center;
 }
-.priority, .date, .div-checkbox{
+.description input[type=text]{ width: 100%; }
+
+.btn-description{
+    height: 50%;
+    background-color: var(--bg-black);
+    color: var(--white);
+}
+.btn-description:hover{
+    background-color: var(--white);
+    color: var(--bg-black);
+}
+
+.priority, .date, .div-checkbox, .btn-description{
     align-items: center;
     justify-content: center;
 }

@@ -1,7 +1,5 @@
 <?php
 
-include "globals.php";
-
 $SQL = "SELECT * FROM theme;";
 $requete = $dbCo->prepare($SQL);
 $requete->execute();
