@@ -39,7 +39,7 @@ body{
     font-size: 1.5rem;
 }
 .ul-navbar{
-    display: flex;
+    display: none;
 }
 .ul-navbar.active{
     display: flex;
@@ -58,6 +58,7 @@ body{
     height: 100%;
     background-color: #fff;
     overflow-y:auto;
+    padding: 0 1rem;
 }
 .footer{
     grid-area: 4 / 1;
@@ -125,6 +126,43 @@ body{
     justify-content: center;
 }
 .priority span, .div-checkbox span{ padding-right: 1rem; }
+/** MODAL **/
+.modal_serie, .modal_error{
+    display: flex;
+    top: 0;
+    left: 0;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    z-index: 1000;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(0, 0, 0, 0.7);
+    color:white;
+}
+.modal_serie_detail, .modal_error_detail{
+    white-space: pre-line;
+    width: 90vw;
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    color: rgb(48, 102, 190);
+    border: solid rgb(48, 102, 190) 5px;
+    background-color: rgb(255, 255, 255);
+    padding: .5rem;
+}
+.modal_serie_detail span:nth-child(even){ color: white;background: rgb(48, 102, 190);padding: .3rem .7rem; }
+.modal_serie_detail span:nth-child(odd){ padding: .3rem .7rem;background-color: rgb(48, 102, 190, .5);font-weight: bold; }
+a{ text-decoration: none;color: white; }
+a:hover{ text-decoration: none;color: red; }
+.modal_error_detail input[type=button]{ color: white;background-color: rgb(48, 102, 190);padding: .5rem;font-weight: bold; }
+.modal_error_detail input[type=button]:hover{ color: rgb(48, 102, 190);background-color: rgb(48, 102, 190, .5); }
+
+.close_modal{ position: fixed;z-index: 1010;top: 20px;right: 50px;color: white;font-size: 1.5rem;padding: .2rem .7rem;border: solid white 2px;border-radius: 1.5rem; }
+.close_modal:hover{ color: red;border: solid red 2px;cursor: pointer; }
+.error_404{ font-weight: bold;font-size: 10rem; }
+.error_404 img{ width: 100%; }
+.message_error_404{ display:flex;align-items: center;justify-content: center;font-size: 175%;font-weight: bold; }
 
 @media screen and (min-width: 1024px) {
     .site{
@@ -179,6 +217,9 @@ body{
 
     .lnk-navbar.active::after, .lnk-navbar:hover::after  {
         width: 100%;
+    }
+    .modal_serie_detail, .modal_error_detail{
+        width: 40vw;
     }
 
 }

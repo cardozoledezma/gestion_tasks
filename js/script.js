@@ -1,7 +1,14 @@
 console.log( "Le script est lancé..." );
+
 document.getElementById('sort-priority').addEventListener('change', function (event) {
      window.location.href = 'index.php?page=1&sort=' + this.value;
 });
+
+document.getElementById('mobile-button').addEventListener('click', function (event) {
+     if(document.querySelector('.ul-navbar').classList.contains('active')) document.querySelector('.ul-navbar').classList.remove('active');
+     else  document.querySelector('.ul-navbar').classList.add("active");
+});
+
 
 const check = document.querySelectorAll( '.id-checkbox');
 check.forEach(element => element.addEventListener('change', function (event) {
