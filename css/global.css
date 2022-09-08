@@ -6,6 +6,7 @@
 
     /* Colors */
     --bg-black: #142323;
+    --bg-black50: rgb(0, 0, 0, .5);
     --bg-gray: #979999;
     --bg-blue: #4b7ac4;
     --bg-sandbox: #dbdbdb;

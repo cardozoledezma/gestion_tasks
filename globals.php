@@ -1,5 +1,6 @@
 <?php
 
+$date = date("Y-m-d");
 $dir = isset($_REQUEST['dir']) ? $_REQUEST['dir'] : 1;
 
 try {

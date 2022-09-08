@@ -9,6 +9,21 @@ document.getElementById('mobile-button').addEventListener('click', function (eve
      else  document.querySelector('.ul-navbar').classList.add("active");
 });
 
+if(document.querySelector('.modal_task')){
+     document.querySelector('.modal_task').addEventListener("dblclick",function(event){
+         this.remove();
+     });
+     document.querySelector('.close_modal').addEventListener("click",function(event){
+         document.querySelector('.modal_task').remove();
+         this.remove();
+     });
+ }
+ if(document.querySelector('.modal_error')){
+     document.querySelector('#btn_close').addEventListener("click",function(event){
+         document.querySelector('.modal_error').remove();
+     });
+ }
+
 
 const check = document.querySelectorAll( '.id-checkbox');
 check.forEach(element => element.addEventListener('change', function (event) {

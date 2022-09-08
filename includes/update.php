@@ -9,7 +9,7 @@
 
     header('Content-Type: application/json');
 
-    if(!$id) echo json_encode(["error" => ["message" => "Une erreur est survenue !!!"]]);
+    if(!$status || !$checked || !$value || !$id ) echo json_encode(["error" => ["message" => "Une erreur est survenue !!!"]]);
     else {
         if($status === "done"){
             $sql        = "UPDATE task SET done = $checked WHERE id_task = $id;";
