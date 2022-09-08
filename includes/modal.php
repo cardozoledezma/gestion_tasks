@@ -14,9 +14,9 @@ $modal = "
         foreach($recall as $rec){
             $modal .= "
             <div class='modal_task_detail'>
-                <span>Nom de la tâche :</span>".$rec['id_task']."<span></span>
-                <span>Description :</span>".$rec['description']."<span></span>
-                <span>Priorité :</span>".$rec['priority']."<span></span>
+                <span>Nom de la tâche :</span><span>".$rec['id_task']."</span>
+                <span>Description :</span><span>".$rec['description']."</span>
+                <span>Priorité :</span><span>".$rec['priority']."</span>
                 <span>Date de rappel :</span><span>".$rec['date_reminder']."</span>
             </div>";
         }
