@@ -155,9 +155,26 @@ body{
     border: solid var(--bg-black) 5px;
     background-color: rgb(255, 255, 255);
     padding: .5rem;
+    font-size: 1.5rem;
 }
-.modal_task_detail span:nth-child(even){ color: white;background: var(--bg-black);padding: .3rem .7rem; }
-.modal_task_detail span:nth-child(odd){ padding: .3rem .7rem;background-color: var(--bg-black50);font-weight: bold; }
+.modal_task_detail span:nth-child(even){
+    width: 100%;
+    padding: .3rem .7rem;
+    color: white;
+    background: var(--bg-black);
+}
+.modal_task_detail span:nth-child(odd){
+    width: 100%;
+    padding: .3rem .7rem;
+    background-color: var(--bg-black50);
+    font-weight: bold;
+}
+.modal_task_detail span:not(:last-of-type):nth-child(even){
+    border-bottom: solid var(--white) 1px;
+}
+.modal_task_detail span:not(:last-of-type):nth-child(odd){
+    border-bottom: solid var(--bg-black) 1px;
+}
 a{ text-decoration: none;color: white; }
 a:hover{ text-decoration: none;color: red; }
 .modal_error_detail input[type=button]{ color: white;background-color: var(--bg-black);padding: .5rem;font-weight: bold; }
@@ -223,8 +240,8 @@ a:hover{ text-decoration: none;color: red; }
     .lnk-navbar.active::after, .lnk-navbar:hover::after  {
         width: 100%;
     }
-    .modal_serie_detail, .modal_error_detail{
-        width: 40vw;
+    .modal_task_detail, .modal_error_detail{
+        width: 50vw;
     }
 
 }
