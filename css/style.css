@@ -85,10 +85,30 @@ body{
 }
 .cellList{
     border: solid black 1px;
-    width: 125px;
+    width: 100%;
     height: 50px;
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
+.cellList div{
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+.cellList div:not(:last-of-type){
+    border-right: solid black 1px;
+}
+.description{
+    text-align: left;
+    padding-left: 1.5rem;
+    align-items: center;
+}
+.priority, .date, .div-checkbox{
+    align-items: center;
+    justify-content: center;
+}
+.priority span, .div-checkbox span{ padding-right: 1rem; }
 
 @media screen and (min-width: 1024px) {
     .site{
