@@ -27,4 +27,4 @@
 
         ?>
     </main>
-<?=$footer?>
+<?=footer()?>

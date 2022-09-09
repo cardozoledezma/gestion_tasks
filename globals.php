@@ -20,13 +20,6 @@ $requete->execute();
 /*** DATA OF DATABASE ***/
 $tasks = array_map(fn($t) => ["id_task"=>$t['id_task'], "description"=>$t['description'], "color"=>$t['color'], "priority"=>$t['priority'], "date_reminder"=>$t['date_reminder'], "done"=>$t['done'], "id_users"=>$t['id_users']], $requete->fetchAll());
 
-
-$footer = '
-    <footer class="footer">&copy; 2022 - Yann / Wildo</footer>
-    <script src="js/script.js"></script>
-</body>
-</html>';
-
 $color = [ "f7d9d9", "dad9f7", "e0f7d9", "f7f7d9", "f7e9d9", "eed9f7", "f7d9f6", "d9f7f7" ];
 
 $sortPriority = isset($_REQUEST['sort']) ? $_REQUEST['sort'] : '';
