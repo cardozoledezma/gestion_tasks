@@ -25,28 +25,27 @@ if(document.querySelector('.modal_task')){
  }
 
 
-const check = document.querySelectorAll( '.id-checkbox');
+const check = document.querySelectorAll('.id-checkbox');
 check.forEach(element => element.addEventListener('change', function (event) {
-     const id_checked = this.id.substr(-1,1);
+     const id_checked = this.id.match(/\d+/)[0];
      const valid_checked = this.checked;
 
-     async function waitingForResponse() {
+     async function waitingForResponseChecked() {
           const response = await fetch("./includes/update.php?status=done&id=" + id_checked + "&checked=" + valid_checked);
           const todoList = await response.json();
-          // console.table(todoList);
+          console.table(todoList);
           if(todoList['success'].message == 'success'){
                console.log('Update [done] effectué...');
-               location.reload();
+               window.location.reload();
           }
      }
 
-     waitingForResponse();
-
+     waitingForResponseChecked();
 }));
 
 const description = document.querySelectorAll( '.btn-description');
 description.forEach(element => element.addEventListener('click', function (event) {
-     const id_description = this.id.substr(-1,1);
+     const id_description = this.id.match(/\d+/)[0];
      const text_description = document.getElementById("id-description"+id_description).value;
 
      async function waitingForResponse() {
@@ -60,5 +59,4 @@ description.forEach(element => element.addEventListener('click', function (event
      }
 
      waitingForResponse();
-
 }));

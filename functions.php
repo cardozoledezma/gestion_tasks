@@ -18,15 +18,20 @@ function head() : string{
     </header>';
 }
 function nav() : string{
-    return '    <nav class="navbar">
+    $menu = [1=>"Accueil", 2=>"Créer une tâche", 3=>"Liste des tâches", 4=>"Historique", 5=>"Connexion" ];
+
+    $html = '    <nav class="navbar">
     <ul class="ul-navbar">
-        <li  class="li-navbar"><a class="lnk-navbar" href="index.php?page=1&dir=1">Accueil</a></li>
-        <li  class="li-navbar"><a class="lnk-navbar" href="index.php?page=1&dir=2">Créer une tâche</a></li>
-        <li  class="li-navbar"><a class="lnk-navbar" href="index.php?page=1&dir=3">Liste des tâches</a></li>
-        <li  class="li-navbar"><a class="lnk-navbar" href="index.php?page=1&dir=4">Historique</a></li>
-    </ul>
-    <button id="mobile-button" class="nav-burger"><i id="mobile-icon" class="fa fa-bars" aria-hidden="true"></i></button>
+    </ul>';
+
+    foreach($menu as $index=>$link){
+        $html .= '<li  class="li-navbar"><a class="lnk-navbar" href="index.php?page=1&dir='.$index.'">'.$link.'</a></li>';
+    }
+
+    $html .= '<button id="mobile-button" class="nav-burger"><i id="mobile-icon" class="fa fa-bars" aria-hidden="true"></i></button>
     </nav>';
+
+    return $html;
 }
 function footer() : string{
     return '

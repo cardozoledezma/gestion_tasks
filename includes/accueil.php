@@ -10,10 +10,6 @@ $list = "
 </div>
 <ul class='listTasks'>";
 
-// var_dump($_REQUEST);
-$color_use = 0;
-$j = 0;
-
 foreach($tasks as $task){
     if (!$task['done']){
         $list .= "<form merthod='GET' action='update.php?target=done&id=".$task['id_task']."' id='formAccueil' name='formAccueil'>";

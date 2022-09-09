@@ -1,5 +1,7 @@
 <?php
 
+$color_use = 0;
+$j = 0;
 /** VARIABLES **/
 $date = date("Y-m-d");
 /*** DEFINE PAGE ***/
@@ -12,7 +14,7 @@ try {
 catch (Exception $e) {
     die("Unable to connect to the database.".$e->getMessage());
 }
-/*** HOME PAGE REQUEST ***/
+/*** HOME PAGE REQUEST ONGOING TASKS ***/
 $SQL = "SELECT * FROM task";
 $SQL .= (isset($_REQUEST['sort'])) ? " ORDER BY priority" : "";
 $requete = $dbCo->prepare($SQL);
