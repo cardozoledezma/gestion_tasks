@@ -1,21 +1,20 @@
 **** LISTE DES TÂCHES ****
 - Lister les tâches encore à faire (liste)
   Texte court (input)  (modifiable)
-- Tâche à cocher (input checkbox) -> si faite alors sortir de la
-  liste
+- Tâche à cocher (input checkbox) -> si faite alors sortir de la liste
 - Pour chaque tâche [trier] par importance de celle-ci (entier)
 - Si tâche terminée alors booleen
 - Attribuer une couleur pour chaque type de tâche
-
 **** DATE DE RAPPEL ****
 - Date de rappel pour la tâche
-- Modal pour notifier (liste de liens) => action liée par la
-  date
+- Modal pour notifier (liste de liens) => action liée par la date
+
+
+
 
 **** HISTORIQUE ****
 - Historique de la liste des tâches terminées
-- Les tâches effectuées sont cochées -> si une est décochée
-  alors elle retourne dans la liste     des tâches à effectuer
+- Les tâches effectuées sont cochées -> si une est décochée alors elle retourne dans la liste des tâches à effectuer
 
 **** THEMES ****
 - Liste de thèmes de tâches à effectuer (select option)

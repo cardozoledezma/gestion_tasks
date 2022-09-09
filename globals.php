@@ -11,6 +11,16 @@ catch (Exception $e) {
     die("Unable to connect to the database.".$e->getMessage());
 }
 
+/************** REQUETE ACCUEIL ************/
+$SQL = "SELECT * FROM task";
+$SQL .= (isset($_REQUEST['sort'])) ? " ORDER BY priority" : "";
+
+$requete = $dbCo->prepare($SQL);
+$requete->execute();
+/************** DONNEES DE LA BASE *********/
+$tasks = array_map(fn($t) => ["id_task"=>$t['id_task'], "description"=>$t['description'], "color"=>$t['color'], "priority"=>$t['priority'], "date_reminder"=>$t['date_reminder'], "done"=>$t['done'], "id_users"=>$t['id_users']], $requete->fetchAll());
+
+
 $footer = '
     <footer class="footer">&copy; 2022 - Yann / Wildo</footer>
     <script src="js/script.js"></script>
