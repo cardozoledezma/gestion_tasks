@@ -22,7 +22,7 @@ if(document.querySelector('.modal_task')){
      document.querySelector('#btn_close').addEventListener("click",function(event){
          document.querySelector('.modal_error').remove();
      });
- }
+}
 
 
 const check = document.querySelectorAll('.id-checkbox');
@@ -33,7 +33,7 @@ check.forEach(element => element.addEventListener('change', function (event) {
      async function waitingForResponseChecked() {
           const response = await fetch("./includes/update.php?status=done&id=" + id_checked + "&checked=" + valid_checked);
           const todoList = await response.json();
-          console.table(todoList);
+          // console.table(todoList);
           if(todoList['success'].message == 'success'){
                console.log('Update [done] effectué...');
                window.location.reload();
@@ -54,7 +54,7 @@ description.forEach(element => element.addEventListener('click', function (event
           // console.table(todoList);
           if(todoList['success'].message == 'success'){
                console.log('Update [description] effectué...');
-               // location.reload();
+               // window.location.reload();
           }
      }
 
