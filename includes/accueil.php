@@ -2,13 +2,7 @@
 
 $list = "
 <div class='title'>Liste des tâches en cours</div>
-<div class='sort_list'>
-    <select id='sort-priority' name='sort-priority'>
-        <option selected readonly>Tri</option>
-        <option readonly></option>
-        <option value='priority'>Trier par priorité</option>
-    </select>
-</div>
+$filter
 <ul class='listTasks'>";
 
 foreach($tasks as $task){

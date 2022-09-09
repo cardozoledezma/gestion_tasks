@@ -20,15 +20,17 @@ function head() : string{
 function nav() : string{
     $menu = [1=>"Accueil", 2=>"Créer une tâche", 3=>"Liste des tâches", 4=>"Historique", 5=>"Connexion" ];
 
-    $html = '    <nav class="navbar">
-    <ul class="ul-navbar">
-    </ul>';
+    $html = '
+    <nav class="navbar">
+        <ul class="ul-navbar">
+    ';
 
     foreach($menu as $index=>$link){
-        $html .= '<li  class="li-navbar"><a class="lnk-navbar" href="index.php?page=1&dir='.$index.'">'.$link.'</a></li>';
+        $html .= '      <li  class="li-navbar"><a class="lnk-navbar" href="index.php?page=1&dir='.$index.'">'.$link.'</a></li>';
     }
 
-    $html .= '<button id="mobile-button" class="nav-burger"><i id="mobile-icon" class="fa fa-bars" aria-hidden="true"></i></button>
+    $html .= '  </ul>
+        <button id="mobile-button" class="nav-burger"><i id="mobile-icon" class="fa fa-bars" aria-hidden="true"></i></button>
     </nav>';
 
     return $html;

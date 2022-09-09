@@ -26,4 +26,13 @@ $color = [ "f7d9d9", "dad9f7", "e0f7d9", "f7f7d9", "f7e9d9", "eed9f7", "f7d9f6",
 
 $sortPriority = isset($_REQUEST['sort']) ? $_REQUEST['sort'] : '';
 
+$filter = "<div class='sort_list'>
+<select id='sort-priority' name='sort-priority'>
+    <option selected readonly>Tri</option>
+    <option readonly></option>
+    <option value='theme'>Thème</option>
+    <option value='priority'>Priorité</option>
+</select>
+</div>";
+
 ?>
