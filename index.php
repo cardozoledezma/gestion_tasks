@@ -24,6 +24,7 @@
             if($dir == "2") include "includes/createTask.php";
             if($dir == "3") include "includes/listTask.php";
             if($dir == "4") include "includes/historyTask.php";
+            if($dir == "5") include "includes/connexion.php";
 
         ?>
     </main>
