@@ -1,6 +1,7 @@
 <?php
 
 $list = "
+<div class='title'>Liste des tâches en cours</div>
 <div class='sort_list'>
     <select id='sort-priority' name='sort-priority'>
         <option selected readonly>Tri</option>
@@ -26,7 +27,7 @@ foreach($tasks as $task){
         $list .= "          </select>";
         $list .= "      </div>";
         $list .= "      <div class='date'>".$task['date_reminder']."</div>";
-        $list .= "      <div class='div-checkbox'><span>Valider</span><input type='checkbox' value='".$task['id_task']."' id='id-checkbox".$task['id_task']."' name='id-checkbox".$task['id_task']."' class='id-checkbox'/></div>";
+        $list .= "      <div class='div-checkbox'><span>Valider</span><input type='checkbox' value='".$task['id_task']."' id='id-checkbox".$task['id_task']."' name='id-checkbox".$task['id_task']."' class='id-checkbox' ".($task['done'] ? "checked" : "")."/></div>";
         $list .= "      <div class='div-description'><input type='button' value='Save changes' class='btn-description' id='btn-description".$task['id_task']."' name='btn-description".$task['id_task']."' /></div>";
         $list .= "  </li>";
         $list .= "</form>";
