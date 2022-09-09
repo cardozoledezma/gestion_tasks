@@ -1,6 +1,7 @@
 <?php
     /** INCLUSION DES VARIABLES GLOBALES **/
     include "globals.php";
+    include "functions.php";
 ?>
 
 <!DOCTYPE html>
@@ -14,15 +15,16 @@
         <main class="main">
             <?php
 
-            /** MODAL SI DATE LIMITE DEPASSEE **/
-            include "includes/modal.php";
-
             /** CHANGEMENT DE PAGE **/
-            if($dir == "1") include "includes/accueil.php";
+            if($dir == "1"){
+                /** MODAL SI DATE LIMITE DEPASSEE **/
+                include "includes/accueil.php";
+                // include "includes/modal.php";
+            }
             if($dir == "2") include "includes/createTask.php";
             if($dir == "3") include "includes/listTask.php";
             if($dir == "4") include "includes/historyTask.php";
 
         ?>
     </main>
-<?=$footer?>
+<?=footer()?>

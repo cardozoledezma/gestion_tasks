@@ -88,40 +88,77 @@ body{
     width: 100%;
     padding: 2rem 1rem;
 }
+.sortCells{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: var(--bg-black);
+    color: var(--white);
+    font-size: 1.5rem;
+}
+.listTasks{
+    display: grid;
+}
+.formAccueil{
+    grid-column: 1 / 5;
+}
 .cellList{
+    display: grid;
     border: solid black 1px;
     width: 100%;
     height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+}
+.refs{
+    background-color: var(--bg-black);
+    color: var(--white);
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+.refs div{
+    height: 100%;
 }
 .cellList div{
     display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     height: 100%;
 }
 .cellList div:not(:last-of-type){
-    border-right: solid black 1px;
+    border-right: solid var(--bg-black) 1px;
 }
+.refs div:not(:last-of-type){
+    border-right: solid var(--white) 1px;
+}
+.refs div{ padding: 0; }
+.cellList div:nth-child(1){ grid-area: auto/1; width: 309px; }
+.cellList div:nth-child(2){ grid-area: auto/2; width: 165px; }
+.cellList div:nth-child(3){ grid-area: auto/3; width: 156px; }
+.cellList div:nth-child(4){ grid-area: auto/4; width: 132px; }
+.cellList div:nth-child(5){ grid-area: auto/5; width: 180px; }
+
 .description{
     text-align: left;
     padding: 0 1.5rem;
     align-items: center;
 }
-.description input[type=text]{ width: 100%; }
-
+.description input[type=text]{
+    width: 100%;
+}
 .btn-description{
     height: 50%;
     background-color: var(--bg-black);
     color: var(--white);
+    padding: 0 .5rem;
+    font-size: 1.2rem;
+    font-weight: bold;
 }
 .btn-description:hover{
     background-color: var(--white);
     color: var(--bg-black);
 }
 
-.priority, .date, .div-checkbox, .btn-description{
+.priority, .date, .div-checkbox{
     align-items: center;
     justify-content: center;
 }

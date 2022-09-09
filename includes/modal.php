@@ -5,7 +5,6 @@ $req_modal = $dbCo->prepare($sql);
 $req_modal->execute();
 
 $recall = array_map( fn($t) => ["id_task"=>$t['id_task'], "description"=>$t['description'], "priority"=>$t['priority'], "date_reminder"=>$t['date_reminder'] ], $req_modal->fetchAll());
-var_dump($recall);
 
 $modal = "
 <div class='close_modal' id='close_modal'>X</div>
