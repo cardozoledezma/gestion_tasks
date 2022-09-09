@@ -8,13 +8,12 @@
 **** DATE DE RAPPEL ****
 - Date de rappel pour la tâche
 - Modal pour notifier (liste de liens) => action liée par la date
-
-
-
-
 **** HISTORIQUE ****
 - Historique de la liste des tâches terminées
 - Les tâches effectuées sont cochées -> si une est décochée alors elle retourne dans la liste des tâches à effectuer
+
+
+
 
 **** THEMES ****
 - Liste de thèmes de tâches à effectuer (select option)
