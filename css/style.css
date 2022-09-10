@@ -9,7 +9,7 @@ body{
     align-items: center;
     justify-content: center;
     grid-template-columns: 1fr;
-    grid-template-rows: 8% 5% 82% 5%;
+    grid-template-rows: 8% 5.5% 81.5% 5%;
 }
 
 .header{
@@ -62,8 +62,10 @@ body{
 }
 .footer{
     grid-area: 4 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: var(--bg-black);
-    text-align: center;
     padding: 1.5rem 0;
     font-size: 1.5rem;
     height: 100%;
@@ -75,9 +77,10 @@ body{
     background-color: var(--bg-black);
     border: none;
     cursor: pointer;
+    height: 40px;
 }
 .fa.fa-bars{ font-size: 2.5rem;}
-
+#mobile-icon{ margin-right: 1rem; }
 .formCreate{
     white-space: pre-line;
 }
@@ -98,6 +101,7 @@ body{
 }
 .listTasks{
     display: grid;
+    gap: 1.5rem;
 }
 .formAccueil{
     grid-column: 1 / 5;
@@ -117,16 +121,8 @@ body{
     display: grid;
     border: solid black 1px;
     width: 100%;
-    height: 50px;
-}
-.refs{
-    background-color: var(--bg-black);
-    color: var(--white);
-    font-weight: bold;
-    font-size: 1.5rem;
-}
-.refs div{
-    height: 100%;
+    height: 250px;
+    gap: 1rem;
 }
 .cellList div{
     display: flex;
@@ -135,29 +131,24 @@ body{
     width: 100%;
     height: 100%;
 }
-.cellList div:not(:last-of-type){
-    border-right: solid var(--bg-black) 1px;
-}
-.refs div:not(:last-of-type){
-    border-right: solid var(--white) 1px;
-}
-.refs div{ padding: 0; }
-.cellList div:nth-child(1){ grid-area: auto/1; width: 309px; }
-.cellList div:nth-child(2){ grid-area: auto/2; width: 165px; }
-.cellList div:nth-child(3){ grid-area: auto/3; width: 156px; }
-.cellList div:nth-child(4){ grid-area: auto/4; width: 132px; }
-.cellList div:nth-child(5){ grid-area: auto/5; width: 180px; }
 
+.cellList div:nth-child(1), .cellList div:nth-child(2)
+, .cellList div:nth-child(3), .cellList div:nth-child(4)
+, .cellList div:nth-child(5){ grid-area: auto/5; width: 90vw; }
+
+.refs{
+    display: none;
+}
 .description{
-    text-align: left;
     padding: 0 1.5rem;
     align-items: center;
 }
 .description input[type=text]{
-    width: 100%;
+    width: 80%;
+    height: 75%;
 }
 .btn-description{
-    height: 50%;
+    height: 10%;
     background-color: var(--bg-black);
     color: var(--white);
     padding: 0 .5rem;
@@ -239,30 +230,13 @@ a:hover{ text-decoration: none;color: red; }
         grid-template-columns: 20% 1fr 20%;
         grid-template-rows: 8% 5% 82% 5%;
     }
-    .header{
-        grid-area: 1 / 2;
-    }
-    .navbar{
-        grid-area: 2 / 2;
-    }
-    .main{
-        grid-area: 3 / 2;
-    }
-    .footer{
-        grid-area: 4 / 2;
-    }
-    .nav-burger {
-        display: none;
-    }
-    .navbar{
-        justify-content: center;
-    }
-    .ul-navbar {
-        display: flex;
-    }
-    .li-navbar{
-
-    }
+    .header{ grid-area: 1 / 2; }
+    .navbar{ grid-area: 2 / 2; }
+    .main{ grid-area: 3 / 2; }
+    .footer{ grid-area: 4 / 2; }
+    .nav-burger{ display: none; }
+    .navbar{ justify-content: center; }
+    .ul-navbar { display: flex; }
     .lnk-navbar {
         display: inline-block;
         position: relative;
@@ -291,5 +265,29 @@ a:hover{ text-decoration: none;color: red; }
     .modal_task_detail, .modal_error_detail{
         width: 50vw;
     }
+    .refs{
+        display: grid;
+        background-color: var(--bg-black);
+        color: var(--white);
+        font-weight: bold;
+        font-size: 1.5rem;
+    }
+    .refs div{
+        height: 100%;
+    }
+    .refs div:not(:last-of-type){
+        border-right: solid var(--white) 1px;
+    }
+    .refs div{ padding: 0; }
 
+    .cellList div:nth-child(1){ grid-area: auto/1; width: 309px; }
+    .cellList div:nth-child(2){ grid-area: auto/2; width: 165px; }
+    .cellList div:nth-child(3){ grid-area: auto/3; width: 156px; }
+    .cellList div:nth-child(4){ grid-area: auto/4; width: 132px; }
+    .cellList div:nth-child(5){ grid-area: auto/5; width: 180px; }
+    .cellList div:not(:last-of-type){ border-right: solid var(--bg-black) 1px; }
+    .description input[type=text]{
+        width: 100%;
+        height: 10%;
+    }
 }
