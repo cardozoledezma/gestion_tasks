@@ -101,6 +101,7 @@ body{
 }
 .listTasks{
     display: grid;
+    gap: 1.5rem;
 }
 .formAccueil{
     grid-column: 1 / 5;
@@ -120,7 +121,8 @@ body{
     display: grid;
     border: solid black 1px;
     width: 100%;
-    height: 50px;
+    height: 250px;
+    gap: 1rem;
 }
 .cellList div{
     display: flex;
@@ -129,29 +131,24 @@ body{
     width: 100%;
     height: 100%;
 }
-.cellList div:not(:last-of-type){
-    border-right: solid var(--bg-black) 1px;
-}
 
-.cellList div:nth-child(1){ grid-area: auto/1; width: 309px; }
-.cellList div:nth-child(2){ grid-area: auto/2; width: 165px; }
-.cellList div:nth-child(3){ grid-area: auto/3; width: 156px; }
-.cellList div:nth-child(4){ grid-area: auto/4; width: 132px; }
-.cellList div:nth-child(5){ grid-area: auto/5; width: 180px; }
+.cellList div:nth-child(1), .cellList div:nth-child(2)
+, .cellList div:nth-child(3), .cellList div:nth-child(4)
+, .cellList div:nth-child(5){ grid-area: auto/5; width: 90vw; }
 
 .refs{
     display: none;
 }
 .description{
-    text-align: left;
     padding: 0 1.5rem;
     align-items: center;
 }
 .description input[type=text]{
-    width: 100%;
+    width: 80%;
+    height: 75%;
 }
 .btn-description{
-    height: 50%;
+    height: 10%;
     background-color: var(--bg-black);
     color: var(--white);
     padding: 0 .5rem;
@@ -283,4 +280,14 @@ a:hover{ text-decoration: none;color: red; }
     }
     .refs div{ padding: 0; }
 
+    .cellList div:nth-child(1){ grid-area: auto/1; width: 309px; }
+    .cellList div:nth-child(2){ grid-area: auto/2; width: 165px; }
+    .cellList div:nth-child(3){ grid-area: auto/3; width: 156px; }
+    .cellList div:nth-child(4){ grid-area: auto/4; width: 132px; }
+    .cellList div:nth-child(5){ grid-area: auto/5; width: 180px; }
+    .cellList div:not(:last-of-type){ border-right: solid var(--bg-black) 1px; }
+    .description input[type=text]{
+        width: 100%;
+        height: 10%;
+    }
 }
