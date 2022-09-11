@@ -1,6 +1,6 @@
 console.log( "Le script est lancé..." );
 
-document.getElementById('sort-priority').addEventListener('change', function (event) {
+if(document.getElementById('sort-priority')) document.getElementById('sort-priority').addEventListener('change', function (event) {
      window.location.href = 'index.php?page=1&sort=' + this.value;
 });
 
@@ -22,6 +22,10 @@ if(document.querySelector('.modal_task')){
      document.querySelector('#btn_close').addEventListener("click",function(event){
          document.querySelector('.modal_error').remove();
      });
+}
+
+if(window.innerWidth >= 1024){
+     document.querySelector('.ul-navbar').classList.remove('active');
 }
 
 

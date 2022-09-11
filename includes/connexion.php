@@ -1,7 +1,5 @@
 <?php
 
-
-
 $page_connexion = "
 <div class='title'>Page de connexion</div>
     <div class='pageConnexion'>
@@ -14,5 +12,7 @@ $page_connexion = "
     </form>
 </div>
 ";
+
+echo $page_connexion;
 
 ?>

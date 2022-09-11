@@ -1,9 +1,6 @@
 <?php
 
-$list = "
-<div class='title'>Liste des tâches en cours</div>
-$filter
-<ul class='listTasks'>";
+$list = $filters;
 
 foreach($tasks as $task){
     if ($task['done']){

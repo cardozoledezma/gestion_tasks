@@ -1,11 +1,3 @@
-<?php
-
-$SQL = "SELECT * FROM theme;";
-$requete = $dbCo->prepare($SQL);
-$requete->execute();
-
-
-?>
 
 <form method="get" action="index.php?page=6" name="form-create-task" id="form-create-task" class="formCreate">
     <input type="text" id="nameTask" name="nameTask" placeholder="Entrer nom de la tâche">
@@ -14,8 +6,8 @@ $requete->execute();
             <option readonly></optiopn>
             <?php
 
-                foreach($result = $requete->fetchAll() as $res){
-                    echo '<option value="'.$res['theme_name'].'">'.$res['theme_name'].'</option>';
+                foreach($themes as $theme){
+                    echo '<option value="'.$theme['name'].'">'.$theme['name'].'</option>';
                 }
 
             ?>
