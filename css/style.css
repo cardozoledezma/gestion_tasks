@@ -24,7 +24,7 @@ body{
     width: 5rem;
 }
 .site_title{
-    font-size: 3rem;
+    font-size: 2rem;
 }
 .navbar{
     grid-area: 2 / 1;
@@ -33,7 +33,6 @@ body{
     justify-content: right;
     background-color: var(--bg-black);
     color: var(--white);
-    list-style: none;
     height: 100%;
     border-top: solid var(--bg-gray) 1px;
     font-size: 1.5rem;
@@ -42,10 +41,26 @@ body{
     display: none;
 }
 .ul-navbar.active{
-    display: flex;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(0, 0, 0, 0.8);
+    position: absolute;
+    z-index: 1000;
+    display: grid;
+    align-self: center;
+    justify-content: center;
+    grid-template-rows: repeat(5, 30px);
+    padding-top: 55%;
 }
 .li-navbar{
     display: inline-block;
+    width: 70vw;
+    text-align: left;
+    color: var(--white);
+    background-color: var(--bg-black);
+    padding: 0 15%;
 }
 .lnk-navbar{
     text-decoration: none;
@@ -122,7 +137,6 @@ body{
     border: solid black 1px;
     width: 100%;
     height: 250px;
-    gap: 1rem;
 }
 .cellList div{
     display: flex;
@@ -145,10 +159,10 @@ body{
 }
 .description input[type=text]{
     width: 80%;
-    height: 75%;
+    height: 50%;
 }
 .btn-description{
-    height: 10%;
+    height: 50%;
     background-color: var(--bg-black);
     color: var(--white);
     padding: 0 .5rem;
@@ -230,13 +244,30 @@ a:hover{ text-decoration: none;color: red; }
         grid-template-columns: 20% 1fr 20%;
         grid-template-rows: 8% 5% 82% 5%;
     }
+    .site_title{
+        font-size: 3rem;
+    }
     .header{ grid-area: 1 / 2; }
-    .navbar{ grid-area: 2 / 2; }
     .main{ grid-area: 3 / 2; }
-    .footer{ grid-area: 4 / 2; }
     .nav-burger{ display: none; }
-    .navbar{ justify-content: center; }
-    .ul-navbar { display: flex; }
+    .navbar{ grid-area: 2 / 2;list-style: none;align-items: center; }
+    .ul-navbar, .ul-navbar.active{
+        top: 80px;
+        position: none;
+        z-index: 0;
+        display: flex;
+        justify-content: center;
+        padding-top: 0;
+        width: 100%;
+        background: none;
+    }
+    .li-navbar{
+        display: inline-block;
+        list-style: none;
+        width: auto;
+        background: none;
+        padding: 0;
+    }
     .lnk-navbar {
         display: inline-block;
         position: relative;
@@ -246,7 +277,7 @@ a:hover{ text-decoration: none;color: red; }
         background-color: var(--white);
         color: var(--bg-black);
     }
-
+    
     .lnk-navbar::after {
         content: "";
         display: block;
@@ -258,7 +289,7 @@ a:hover{ text-decoration: none;color: red; }
         background-color: var(--primary-color);
         transition: width .3s ease;
     }
-
+    
     .lnk-navbar.active::after, .lnk-navbar:hover::after  {
         width: 100%;
     }
@@ -279,15 +310,21 @@ a:hover{ text-decoration: none;color: red; }
         border-right: solid var(--white) 1px;
     }
     .refs div{ padding: 0; }
-
+    .description input[type=text]{
+        width: 100%;
+    }
+    .listTasks{
+        gap: 0;
+    }
+    .cellList{
+        height: 50px;
+    }
+    
     .cellList div:nth-child(1){ grid-area: auto/1; width: 309px; }
     .cellList div:nth-child(2){ grid-area: auto/2; width: 165px; }
     .cellList div:nth-child(3){ grid-area: auto/3; width: 156px; }
     .cellList div:nth-child(4){ grid-area: auto/4; width: 132px; }
     .cellList div:nth-child(5){ grid-area: auto/5; width: 180px; }
     .cellList div:not(:last-of-type){ border-right: solid var(--bg-black) 1px; }
-    .description input[type=text]{
-        width: 100%;
-        height: 10%;
-    }
+    .footer{ grid-area: 4 / 2; }
 }

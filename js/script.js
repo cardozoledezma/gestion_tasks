@@ -24,6 +24,10 @@ if(document.querySelector('.modal_task')){
      });
 }
 
+if(window.innerWidth >= 1024){
+     document.querySelector('.ul-navbar').classList.remove('active');
+}
+
 
 const check = document.querySelectorAll('.id-checkbox');
 check.forEach(element => element.addEventListener('change', function (event) {
