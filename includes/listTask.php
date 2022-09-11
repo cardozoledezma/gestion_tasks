@@ -1,9 +1,6 @@
 <?php
 
-$list = "
-<div class='title'>Liste des tâches en cours</div>
-$filter
-<ul class='listTasks'>";
+$list = $filters;
 
 foreach($tasks as $task){
         $list .= "<form merthod='GET' action='update.php?target=done&id=".$task['id_task']."' id='formAccueil' name='formAccueil'>";

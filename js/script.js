@@ -1,6 +1,6 @@
 console.log( "Le script est lancé..." );
 
-document.getElementById('sort-priority').addEventListener('change', function (event) {
+if(document.getElementById('sort-priority')) document.getElementById('sort-priority').addEventListener('change', function (event) {
      window.location.href = 'index.php?page=1&sort=' + this.value;
 });
 

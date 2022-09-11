@@ -103,9 +103,11 @@ body{
     margin: .5rem 0;
 }
 .sort_list{
+
     width: 100%;
     padding: 2rem 1rem;
 }
+.sort_list select{ margin-right: 1rem; }
 .sortCells{
     width: 100%;
     display: flex;

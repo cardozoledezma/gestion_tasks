@@ -14,25 +14,45 @@ try {
 catch (Exception $e) {
     die("Unable to connect to the database.".$e->getMessage());
 }
-/*** HOME PAGE REQUEST ONGOING TASKS ***/
+/*** REQUEST ONGOING TASKS ***/
 $SQL = "SELECT * FROM task";
 $SQL .= (isset($_REQUEST['sort'])) ? " ORDER BY priority" : "";
 $requete = $dbCo->prepare($SQL);
 $requete->execute();
-/*** DATA OF DATABASE ***/
+/*** REQUEST ONGOING TASKS ***/
+$SQL2 = "SELECT * FROM theme";
+$SQL2 .= (isset($_REQUEST['theme'])) ? " WHERE theme='".$_REQUEST['theme']."'" : "";
+$requete2 = $dbCo->prepare($SQL2);
+$requete2->execute();
+/* TASKS */
 $tasks = array_map(fn($t) => ["id_task"=>$t['id_task'], "description"=>$t['description'], "color"=>$t['color'], "priority"=>$t['priority'], "date_reminder"=>$t['date_reminder'], "done"=>$t['done'], "id_users"=>$t['id_users']], $requete->fetchAll());
+/* THEMES */
+$themes = array_map(fn($t) => ["name"=>$t['theme_name']], $requete2->fetchAll());
 
 $color = [ "f7d9d9", "dad9f7", "e0f7d9", "f7f7d9", "f7e9d9", "eed9f7", "f7d9f6", "d9f7f7" ];
 
 $sortPriority = isset($_REQUEST['sort']) ? $_REQUEST['sort'] : '';
+$sortTheme = isset($_REQUEST['theme']) ? $_REQUEST['theme'] : '';
 
-$filter = "<div class='sort_list'>
-<select id='sort-priority' name='sort-priority'>
+$filterPriority = "<select id='sort-priority' name='sort-priority'>
     <option selected readonly>Tri</option>
     <option readonly></option>
-    <option value='theme'>Thème</option>
     <option value='priority'>Priorité</option>
-</select>
-</div>";
+</select>";
+
+$filterTheme = "<select id='sort-theme' name='sort-theme'>
+    <option selected readonly>Tri pa thème</option>
+    <option readonly></option>";
+
+    foreach($themes as $index=>$theme){ $filterTheme .= "<option value='".($index+1)."'>".$theme['name']."</option>"; }
+
+    $filterTheme .= "</select>";
+
+$filters = $list = "
+<div class='title'>Liste des tâches en cours</div>
+    <div class='sort_list'>
+        $filterPriority $filterTheme
+    </div>
+<ul class='listTasks'>";
 
 ?>
