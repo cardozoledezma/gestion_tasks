@@ -55,7 +55,7 @@ $tasks = array_map(fn($t) =>
 /* THEMES */
 $themes = array_map(fn($t) => ["name"=>$t['theme_name']], $requete2->fetchAll());
 
-$color = [ "f7d9d9", "dad9f7", "e0f7d9", "f7f7d9", "f7e9d9", "eed9f7", "f7d9f6", "d9f7f7" ];
+$colors = [ "f7d9d9", "dad9f7", "e0f7d9", "e6f2b6", "f49f9f", "f7ba74", "9ef5db", "a4b7d7" ];
 
 $filterPriority = "<select id='sort-priority' name='sort-priority'>
     <option selected readonly>Tri par priorité</option>
