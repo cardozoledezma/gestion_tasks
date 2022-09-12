@@ -22,10 +22,12 @@ FROM task t
 $SQL .= (isset($_REQUEST['sort'])) ? " ORDER BY t.priority" : "";
 $requete = $dbCo->prepare($SQL);
 $requete->execute();
+
 /*** REQUEST ONGOING TASKS ***/
 $SQL2 = "SELECT * FROM theme";
 $requete2 = $dbCo->prepare($SQL2);
 $requete2->execute();
+
 /* TASKS */
 $tasks = array_map(fn($t) => ["id_task"=>$t['id_task'], "description"=>$t['description'], "color"=>$t['color'], "priority"=>$t['priority'], "date_reminder"=>$t['date_reminder'], "done"=>$t['done'], "id_users"=>$t['id_users'], "theme"=>["id_theme"=>$t['id_theme'], "theme_name"=>$t['theme_name']]], $requete->fetchAll());
 /* THEMES */
@@ -37,7 +39,7 @@ $sortPriority = isset($_REQUEST['sort']) ? $_REQUEST['sort'] : '';
 $sortTheme = isset($_REQUEST['theme']) ? $_REQUEST['theme'] : '';
 
 $filterPriority = "<select id='sort-priority' name='sort-priority'>
-    <option selected readonly>Tri</option>
+    <option selected readonly>Tri par priorité</option>
     <option readonly></option>
     <option value='priority'>Priorité</option>
 </select>";

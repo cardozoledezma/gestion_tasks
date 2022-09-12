@@ -1,6 +1,7 @@
 <?php
-/* Exemple */
+/* Exemple d'accès direct */
 // var_dump($tasks[0]['theme']['theme_name']);
+
 $list = $filters;
 
 foreach($tasks as $task){
