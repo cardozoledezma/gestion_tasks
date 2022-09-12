@@ -1,7 +1,34 @@
 console.log( "Le script est lancé..." );
 
+function parameter($name,$value) {
+     // Ex: $(this).parameter([nom],[valeur]);
+     var $loc = window.location.href, $hist= window.history, $parameters = $loc.match(/[\\?&].([^&#]*)=([^&#]*)/g), $data = {}, $url = '?';
+     for (var $key in $parameters) {
+          var couple = $parameters[$key].substring(1, $parameters[$key].length).split('=');  // A chaque fois qu'on trouve l'occurrence "="
+          $data[couple[0]] = couple[1];                                                      // Tableau 
+     }
+     if ($value == null)  return $data[$name] ? $data[$name] : null;
+     if ($value != false) $data[$name] = $value;
+
+     for (var $key in $data) {
+          if ($value == false && $key == $name) continue;                                    // On passe si la valeur est fausse ou si la clé est égale au nom
+          $url = $url.concat($key.concat('=' + $data[$key]+'&'));                            // Concaténation de la nouvelle adresse
+     }
+     $hist.pushState('', document.title, $url.substring(0, $url.length-1));                 // On modifie l'historique de navigation
+}
+
 if(document.getElementById('sort-priority')) document.getElementById('sort-priority').addEventListener('change', function (event) {
-     window.location.href = 'index.php?page=1&sort=' + this.value;
+     console.log(typeof parseInt(this.value));
+     if(!this.value.match(/priorité/g)){
+          parameter("sort", this.value);
+          window.location.href = window.location.href;
+     }
+});
+if(document.getElementById('sort-theme')) document.getElementById('sort-theme').addEventListener('change', function (event) {
+     if(!this.value.match(/thème/g)){
+          parameter("theme", this.value);
+          window.location.href = window.location.href;
+     }
 });
 
 document.getElementById('mobile-button').addEventListener('click', function (event) {

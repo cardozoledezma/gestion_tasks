@@ -1,7 +1,7 @@
 <?php
     /** INCLUSION DES VARIABLES GLOBALES **/
-    include "globals.php";
-    include "functions.php";
+    require_once "globals.php";
+    require_once "functions.php";
 ?>
 
 <!DOCTYPE html>
