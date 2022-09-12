@@ -9,7 +9,7 @@ foreach($tasks as $task){
     if ($task['done'] && $task['id_task'] != $nextID){
         $list .= "<form merthod='GET' action='update.php?id=".$task['id_task']."' id='formAccueil' name='formAccueil'>";
         $list .= $j == 0 ? "<li class='cellList refs'><div>Description</div><div>Priority</div><div>Date_reminder</div><div>Thème</div><div>ToDo</div><div>Save</div></li>" : "";
-        $list .= "  <li class='cellList' style='background-color: #".$color[$task['color']-1].";'>";
+        $list .= "  <li class='cellList' style='background-color: #".$colors[$task['color']-1].";'>";
         $list .= "      <div class='description'><input type='text' value='".$task['description']."' id='id-description".$task['id_task']."' name='id-description".$task['id_task']."' ></div>";
         $list .= "      <div class='priority'>";
         $list .="           <span>Priorité</span><select id='select-priority' name='select-priority'>";
