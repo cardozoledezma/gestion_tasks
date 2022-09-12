@@ -1,14 +1,11 @@
 <?php
 
-$nextID = null;
-$themeTask = [];
 $list = $filters;
-
 
 foreach($tasks as $task){
     $themeTask = [];
     if($task['id_task'] != $nextID){
-        $list .= "<form merthod='GET' action='update.php?target=done&id=".$task['id_task']."' id='formAccueil' name='formAccueil'>";
+        $list .= "<form merthod='GET' action='update.php?id=".$task['id_task']."' id='formAccueil' name='formAccueil'>";
         $list .= $j == 0 ? "<li class='cellList refs'><div>Description</div><div>Priority</div><div>Date_reminder</div><div>Thème</div><div>ToDo</div><div>Save</div></li>" : "";
         $list .= "  <li class='cellList' style='background-color: #".$color[$task['color']-1].";'>";
         $list .= "      <div class='description'><input type='text' value='".$task['description']."' id='id-description".$task['id_task']."' name='id-description".$task['id_task']."' ></div>";
@@ -25,7 +22,7 @@ foreach($tasks as $task){
         $list .= "      <div class='theme'>";
 
         foreach($listTH as $th){
-            if($th['id_task'] == $task['id_task']) $themeTask[] = "<label for='theme".$task['id_task']."'>".$th['theme_name']."</label><input type='checkbox' id='theme".$task['id_task']."' name='theme".$task['id_task']."' value='".$th['theme_name']."' selected> <br>";
+            if($th['id_task'] == $task['id_task']) $themeTask[] = "<label for='theme".$task['id_task']."'>".$th['theme_name']."</label><input type='checkbox' id='theme".$task['id_task']."' name='theme".$task['id_task']."' value='".$th['theme_name']."' checked> <br>";
         }
 
         $list .= implode(" ", $themeTask);
