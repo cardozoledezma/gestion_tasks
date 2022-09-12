@@ -7,8 +7,9 @@ function meta() : string{
     <link rel="shortcut icon" href="./">
     <title>Gestion Tasks</title>
     <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/global.css?">
     <link rel="stylesheet" href="css/style.css?'.time().'">
+    <link rel="stylesheet" href="css/media.css">
     <link rel="icon" type="image/png" href="favicon.png">';
 }
 

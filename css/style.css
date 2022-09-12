@@ -73,7 +73,7 @@ body{
     height: 100%;
     background-color: #fff;
     overflow-y:auto;
-    padding: 0 1rem;
+    padding: 0 1rem 10rem 1rem;
 }
 .footer{
     grid-area: 4 / 1;
@@ -150,7 +150,7 @@ body{
 
 .cellList div:nth-child(1), .cellList div:nth-child(2)
 , .cellList div:nth-child(3), .cellList div:nth-child(4)
-, .cellList div:nth-child(5){ grid-area: auto/5; width: 90vw; }
+, .cellList div:nth-child(5), .cellList div:nth-child(6){ grid-area: auto/6; width: 90vw; }
 
 .refs{
     display: none;
@@ -240,93 +240,3 @@ a:hover{ text-decoration: none;color: red; }
 .error_404{ font-weight: bold;font-size: 10rem; }
 .error_404 img{ width: 100%; }
 .message_error_404{ display:flex;align-items: center;justify-content: center;font-size: 175%;font-weight: bold; }
-
-@media screen and (min-width: 1024px) {
-    .site{
-        grid-template-columns: 20% 1fr 20%;
-        grid-template-rows: 8% 5% 82% 5%;
-    }
-    .site_title{
-        font-size: 3rem;
-    }
-    .header{ grid-area: 1 / 2; }
-    .main{ grid-area: 3 / 2; }
-    .nav-burger{ display: none; }
-    .navbar{ grid-area: 2 / 2;list-style: none;align-items: center; }
-    .ul-navbar, .ul-navbar.active{
-        top: 80px;
-        position: none;
-        z-index: 0;
-        display: flex;
-        justify-content: center;
-        padding-top: 0;
-        width: 100%;
-        background: none;
-    }
-    .li-navbar{
-        display: inline-block;
-        list-style: none;
-        width: auto;
-        background: none;
-        padding: 0;
-    }
-    .lnk-navbar {
-        display: inline-block;
-        position: relative;
-        transition: border var(--transition-duration) var(--transition-function);
-    }
-    .lnk-navbar:hover{
-        background-color: var(--white);
-        color: var(--bg-black);
-    }
-    
-    .lnk-navbar::after {
-        content: "";
-        display: block;
-        height: .25rem;
-        width: 0;
-        position: absolute;
-        left: 0;
-        bottom: -.5rem;
-        background-color: var(--primary-color);
-        transition: width .3s ease;
-    }
-    
-    .lnk-navbar.active::after, .lnk-navbar:hover::after  {
-        width: 100%;
-    }
-    .modal_task_detail, .modal_error_detail{
-        width: 50vw;
-    }
-    .refs{
-        display: grid;
-        background-color: var(--bg-black);
-        color: var(--white);
-        font-weight: bold;
-        font-size: 1.5rem;
-    }
-    .refs div{
-        height: 100%;
-    }
-    .refs div:not(:last-of-type){
-        border-right: solid var(--white) 1px;
-    }
-    .refs div{ padding: 0; }
-    .description input[type=text]{
-        width: 100%;
-    }
-    .listTasks{
-        gap: 0;
-    }
-    .cellList{
-        height: 50px;
-    }
-    
-    .cellList div:nth-child(1){ grid-area: auto/1; width: 309px; }
-    .cellList div:nth-child(2){ grid-area: auto/2; width: 165px; }
-    .cellList div:nth-child(3){ grid-area: auto/3; width: 156px; }
-    .cellList div:nth-child(4){ grid-area: auto/4; width: 132px; }
-    .cellList div:nth-child(5){ grid-area: auto/5; width: 180px; }
-    .cellList div:not(:last-of-type){ border-right: solid var(--bg-black) 1px; }
-    .footer{ grid-area: 4 / 2; }
-}
