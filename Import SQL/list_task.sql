@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : jeu. 08 sep. 2022 à 06:04
--- Version du serveur : 5.7.36
--- Version de PHP : 8.0.13
+-- Généré le : lun. 12 sep. 2022 à 19:52
+-- Version du serveur : 8.0.27
+-- Version de PHP : 8.1.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,26 +29,34 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `contain`;
 CREATE TABLE IF NOT EXISTS `contain` (
-  `id_task` int(11) NOT NULL AUTO_INCREMENT,
-  `id_theme` int(11) NOT NULL,
+  `id_task` int NOT NULL,
+  `id_theme` int NOT NULL,
   PRIMARY KEY (`id_task`,`id_theme`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Déchargement des données de la table `contain`
 --
 
 INSERT INTO `contain` (`id_task`, `id_theme`) VALUES
-(21, 8),
-(22, 1),
-(23, 3),
-(24, 2),
-(25, 7),
-(26, 1),
-(27, 4),
-(28, 3),
-(29, 3),
-(30, 5);
+(1, 4),
+(1, 10),
+(2, 3),
+(2, 5),
+(3, 2),
+(4, 1),
+(4, 4),
+(4, 5),
+(5, 3),
+(5, 8),
+(6, 1),
+(6, 3),
+(7, 2),
+(7, 3),
+(8, 7),
+(9, 1),
+(9, 8),
+(10, 5);
 
 -- --------------------------------------------------------
 
@@ -58,10 +66,10 @@ INSERT INTO `contain` (`id_task`, `id_theme`) VALUES
 
 DROP TABLE IF EXISTS `share`;
 CREATE TABLE IF NOT EXISTS `share` (
-  `id_users` int(11) NOT NULL,
-  `id_task` int(11) NOT NULL,
+  `id_users` int NOT NULL,
+  `id_task` int NOT NULL,
   PRIMARY KEY (`id_users`,`id_task`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -71,15 +79,15 @@ CREATE TABLE IF NOT EXISTS `share` (
 
 DROP TABLE IF EXISTS `task`;
 CREATE TABLE IF NOT EXISTS `task` (
-  `id_task` int(11) NOT NULL AUTO_INCREMENT,
+  `id_task` int NOT NULL AUTO_INCREMENT,
   `description` varchar(50) NOT NULL,
-  `color` int(6) NOT NULL,
-  `priority` int(11) NOT NULL,
+  `color` int NOT NULL,
+  `priority` int NOT NULL,
   `date_reminder` date NOT NULL,
   `done` tinyint(1) NOT NULL,
-  `id_users` int(11) NOT NULL,
+  `id_users` int NOT NULL,
   PRIMARY KEY (`id_task`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Déchargement des données de la table `task`
@@ -89,12 +97,12 @@ INSERT INTO `task` (`id_task`, `description`, `color`, `priority`, `date_reminde
 (1, 'Bact smear-eye', 3, 3, '2022-09-07', 0, 2),
 (2, 'Aorta resection & anast', 7, 3, '2022-09-14', 0, 6),
 (3, 'Urethral dx proc NEC', 1, 4, '2022-09-13', 0, 6),
-(4, 'Detach ret photocoag NOS', 1, 1, '2022-09-11', 0, 3),
-(5, 'Pressure dressing applic', 7, 4, '2022-09-12', 1, 7),
+(4, 'Detach ret photocoag NOS', 2, 1, '2022-09-11', 1, 3),
+(5, 'Pressure dressing applic', 7, 4, '2022-09-12', 0, 7),
 (6, 'Excision of elbow NEC', 8, 4, '2022-09-09', 0, 7),
-(7, 'Remov trunk packing NEC', 5, 3, '2022-09-07', 0, 3),
+(7, 'Remov trunk packing NEC', 5, 3, '2022-09-07', 1, 3),
 (8, 'Respiratory measure NEC', 2, 5, '2022-09-13', 0, 4),
-(9, 'Myelomeningocel repair', 1, 5, '2022-09-08', 1, 10),
+(9, 'Myelomeningocel repair', 6, 5, '2022-09-08', 1, 10),
 (10, 'Excis cyst duct remnant', 3, 3, '2022-09-11', 0, 8);
 
 -- --------------------------------------------------------
@@ -105,10 +113,10 @@ INSERT INTO `task` (`id_task`, `description`, `color`, `priority`, `date_reminde
 
 DROP TABLE IF EXISTS `theme`;
 CREATE TABLE IF NOT EXISTS `theme` (
-  `id_theme` int(11) NOT NULL AUTO_INCREMENT,
+  `id_theme` int NOT NULL AUTO_INCREMENT,
   `theme_name` varchar(255) NOT NULL,
   PRIMARY KEY (`id_theme`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Déchargement des données de la table `theme`
@@ -132,11 +140,11 @@ INSERT INTO `theme` (`id_theme`, `theme_name`) VALUES
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
-  `id_users` int(11) NOT NULL AUTO_INCREMENT,
+  `id_users` int NOT NULL AUTO_INCREMENT,
   `user_name` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   PRIMARY KEY (`id_users`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Déchargement des données de la table `users`
