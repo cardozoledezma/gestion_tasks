@@ -26,7 +26,7 @@ foreach($tasks as $task){
         $list .= "      <div class='theme'>";
 
         foreach($listTH as $th){
-            if($th['id_task'] == $task['id_task']) $themeTask[] = "<label for='theme".$task['id_task']."'>".$th['theme_name']."</label><input type='checkbox' id='theme".$task['id_task']."' name='theme".$task['id_task']."' value='".$th['theme_name']."' checked> <br>";
+            if($th['id_task'] == $task['id_task']) $themeTask[] = "<label for='theme".$task['id_task']."'>".$th['theme_name']."</label><input type='checkbox' id='theme".$task['id_task']."' name='theme".$task['id_task']."' value='".$th['id_theme']."' checked> <br>";
         }
 
         $list .= implode(" ", $themeTask);

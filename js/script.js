@@ -29,6 +29,7 @@ if(window.innerWidth >= 1024){
 }
 
 
+
 const check = document.querySelectorAll('.id-checkbox');
 check.forEach(element => element.addEventListener('change', function (event) {
      const id_checked = this.id.match(/\d+/)[0];
