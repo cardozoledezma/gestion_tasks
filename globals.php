@@ -4,6 +4,11 @@ $nextID = null;
 $themeTask = [];
 $color_use = 0;
 $j = 0;
+$where = [];
+
+$sortPriority = isset($_REQUEST['sort']) ?  $where[] = " WHERE priority=".$_REQUEST['sort'] : false;
+$sortTheme = isset($_REQUEST['theme']) ?  $where[] = " theme=".$_REQUEST['theme'] : false;
+
 /** VARIABLES **/
 $date = date("Y-m-d");
 /*** DEFINE PAGE ***/
@@ -19,9 +24,9 @@ catch (Exception $e) {
 /*** REQUEST ONGOING TASKS ***/
 $SQL = "SELECT *
 FROM task t
-    JOIN contain USING (id_task)
-    JOIN theme USING (id_theme)";
-$SQL .= (isset($_REQUEST['sort'])) ? " ORDER BY t.priority" : "";
+    JOIN contain c USING (id_task)
+    JOIN theme th USING (id_theme) ";
+$SQL .= $sortPriority;
 $requete = $dbCo->prepare($SQL);
 $requete->execute();
 
@@ -52,17 +57,18 @@ $themes = array_map(fn($t) => ["name"=>$t['theme_name']], $requete2->fetchAll())
 
 $color = [ "f7d9d9", "dad9f7", "e0f7d9", "f7f7d9", "f7e9d9", "eed9f7", "f7d9f6", "d9f7f7" ];
 
-$sortPriority = isset($_REQUEST['sort']) ? $_REQUEST['sort'] : '';
-$sortTheme = isset($_REQUEST['theme']) ? $_REQUEST['theme'] : '';
-
 $filterPriority = "<select id='sort-priority' name='sort-priority'>
     <option selected readonly>Tri par priorité</option>
-    <option readonly></option>
-    <option value='priority'>Priorité</option>
-</select>";
+    <option readonly></option>";
+
+    for($i=1;$i<=5;$i++){
+        $filterPriority .= "<option value='$i'>$i</option>";
+    }
+
+$filterPriority .= "</select>";
 
 $filterTheme = "<select id='sort-theme' name='sort-theme'>
-    <option selected readonly>Tri pa thème</option>
+    <option selected readonly>Tri par thème</option>
     <option readonly></option>";
 
     foreach($themes as $index=>$theme){ $filterTheme .= "<option value='".($index+1)."'>".$theme['name']."</option>"; }
@@ -70,7 +76,6 @@ $filterTheme = "<select id='sort-theme' name='sort-theme'>
     $filterTheme .= "</select>";
 
 $filters = $list = "
-<div class='title'>Liste des tâches en cours</div>
     <div class='sort_list'>
         $filterPriority $filterTheme
     </div>

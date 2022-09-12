@@ -1,6 +1,6 @@
 <?php
 
-$list = $filters;
+$list = "<div class='title'>Historique des tâches</div>";
 
 foreach($tasks as $task){
 
@@ -15,7 +15,7 @@ foreach($tasks as $task){
         $list .="           <span>Priorité</span><select id='select-priority' name='select-priority'>";
 
         for($i=1;$i<=5;$i++){
-            $list .= "              <option value='".$task['priority']."' ".($task['priority'] == $i ? "selected":"").">".$i."</option>";
+            $list .= "              <option value='".$i."' ".($task['priority'] == $i ? "selected":"").">".$i."</option>";
         }
 
         $list .= "          </select>";
