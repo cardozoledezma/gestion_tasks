@@ -88,4 +88,6 @@
     .cellList div:not(:last-of-type){ border-right: solid var(--bg-black) 1px; }
 
     .footer{ grid-area: 4 / 2; }
+
+    .theme{ white-space: pre-line; }
 }
