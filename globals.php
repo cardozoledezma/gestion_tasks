@@ -15,17 +15,19 @@ catch (Exception $e) {
     die("Unable to connect to the database.".$e->getMessage());
 }
 /*** REQUEST ONGOING TASKS ***/
-$SQL = "SELECT * FROM task";
-$SQL .= (isset($_REQUEST['sort'])) ? " ORDER BY priority" : "";
+$SQL = "SELECT *
+FROM task t
+    JOIN contain USING (id_task)
+    JOIN theme USING (id_theme)";
+$SQL .= (isset($_REQUEST['sort'])) ? " ORDER BY t.priority" : "";
 $requete = $dbCo->prepare($SQL);
 $requete->execute();
 /*** REQUEST ONGOING TASKS ***/
 $SQL2 = "SELECT * FROM theme";
-$SQL2 .= (isset($_REQUEST['theme'])) ? " WHERE theme='".$_REQUEST['theme']."'" : "";
 $requete2 = $dbCo->prepare($SQL2);
 $requete2->execute();
 /* TASKS */
-$tasks = array_map(fn($t) => ["id_task"=>$t['id_task'], "description"=>$t['description'], "color"=>$t['color'], "priority"=>$t['priority'], "date_reminder"=>$t['date_reminder'], "done"=>$t['done'], "id_users"=>$t['id_users']], $requete->fetchAll());
+$tasks = array_map(fn($t) => ["id_task"=>$t['id_task'], "description"=>$t['description'], "color"=>$t['color'], "priority"=>$t['priority'], "date_reminder"=>$t['date_reminder'], "done"=>$t['done'], "id_users"=>$t['id_users'], "theme"=>["id_theme"=>$t['id_theme'], "theme_name"=>$t['theme_name']]], $requete->fetchAll());
 /* THEMES */
 $themes = array_map(fn($t) => ["name"=>$t['theme_name']], $requete2->fetchAll());
 
@@ -54,5 +56,6 @@ $filters = $list = "
         $filterPriority $filterTheme
     </div>
 <ul class='listTasks'>";
+
 
 ?>
