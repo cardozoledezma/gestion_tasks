@@ -240,3 +240,5 @@ a:hover{ text-decoration: none;color: red; }
 .error_404{ font-weight: bold;font-size: 10rem; }
 .error_404 img{ width: 100%; }
 .message_error_404{ display:flex;align-items: center;justify-content: center;font-size: 175%;font-weight: bold; }
+
+.xdebug-error, .xe-warning{ position: absolute; z-index: 10000; background: yellow;border: solid red 2px;padding: 1rem;margin: 550px 0 0 -90vw; }

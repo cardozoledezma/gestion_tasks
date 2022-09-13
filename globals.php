@@ -6,8 +6,8 @@ $color_use = 0;
 $j = 0;
 $where = [];
 
-$sortPriority = isset($_REQUEST['sort']) ?  $where[] = " WHERE priority=".$_REQUEST['sort'] : false;
-$sortTheme = isset($_REQUEST['theme']) ?  $where[] = " theme=".$_REQUEST['theme'] : false;
+$sortPriority   = isset($_REQUEST['sort'])  ?  $where[] = " priority=".$_REQUEST['sort']    : false;
+$sortTheme      = isset($_REQUEST['theme']) ?  $where[] = " id_theme=".$_REQUEST['theme']   : false;
 
 /** VARIABLES **/
 $date = date("Y-m-d");
@@ -26,7 +26,9 @@ $SQL = "SELECT *
 FROM task t
     JOIN contain c USING (id_task)
     JOIN theme th USING (id_theme) ";
-$SQL .= $sortPriority;
+$SQL .= (isset($_REQUEST['sort']) || isset($_REQUEST['theme'])) ? " WHERE " : " ";
+$issetWhere = (isset($_REQUEST['sort']) || isset($_REQUEST['theme'])) ? $where[0] : "";
+$SQL .= (sizeof($where) > 1) ? implode(' AND ',  $where) : $issetWhere;
 $requete = $dbCo->prepare($SQL);
 $requete->execute();
 
