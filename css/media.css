@@ -90,4 +90,5 @@
     .footer{ grid-area: 4 / 2; }
 
     .theme{ white-space: pre-line; }
+    .formCreate{ grid-template-columns: 1fr 15% 30% 1fr; }
 }

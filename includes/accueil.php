@@ -1,7 +1,6 @@
 <?php
 
-var_dump($SQL, $where);
-
+// var_dump($SQL, $where);
 $list = $filters."<div class='title'>Liste des tâches en cours</div>";
 
 foreach($tasks as $task){

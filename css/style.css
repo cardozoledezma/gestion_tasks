@@ -147,6 +147,7 @@ body{
     width: 100%;
     height: 100%;
 }
+.cellList .date{ font-weight: bold; }
 
 .cellList div:nth-child(1), .cellList div:nth-child(2)
 , .cellList div:nth-child(3), .cellList div:nth-child(4)
@@ -182,6 +183,54 @@ body{
 }
 .priority span, .div-checkbox span{ padding-right: 1rem; }
 
+.divFormCreate{
+    background-color: #e6f2b6;
+}
+.formCreate{
+    margin-top: 2rem;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 50% 50% 1fr;
+    grid-template-rows: repeat(4, 15%) 40%;
+}
+.formCreate #labelTask{
+    grid-area: 1/2;
+}
+.formCreate #nameTask{
+    grid-area: 1/3;
+    height: 2rem;
+}
+.formCreate #labelTheme{
+    grid-area: 2/2;
+}
+.formCreate #selectTheme{
+    grid-area: 2/3;
+    height: 2rem;
+}
+.formCreate #labelPriority{
+    grid-area: 3/2;
+}
+.formCreate #selectPriority{
+    grid-area: 3/3;
+    height: 2rem;
+}
+.formCreate #labelColor{
+    grid-area: 4/2;
+}
+.formCreate #selectColor{
+    grid-area: 4/3;
+    height: 2rem;
+}
+.formCreate #createSubmit{
+    grid-area: 5/3;
+    width: 12rem;
+    height: 2rem;
+    display: flex;
+    align-self: end;
+    justify-self: right;
+    background-color: var(--bg-black);
+    color: var(--white);
+}
 /***********/
 /** MODAL **/
 /***********/

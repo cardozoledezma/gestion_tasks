@@ -16,7 +16,7 @@ $dir = isset($_REQUEST['dir']) ? $_REQUEST['dir'] : 1;
 /*** DATABASE ACCESS ***/
 try {
     $dbOptions = [ PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC ];
-    $dbCo = new PDO( 'mysql:host=localhost;dbname=list_task;charset=utf8', 'xloadx', 'r86bs9kp', $dbOptions);
+    $dbCo = new PDO( 'mysql:host=localhost;dbname=list_task_test;charset=utf8', 'xloadx', 'r86bs9kp', $dbOptions);
 }
 catch (Exception $e) {
     die("Unable to connect to the database.".$e->getMessage());

@@ -55,6 +55,32 @@ if(window.innerWidth >= 1024){
      document.querySelector('.ul-navbar').classList.remove('active');
 }
 
+const formCreate = document.getElementById('form-create-task');
+formCreate.addEventListener('submit',function(event){
+     event.preventDefault();
+
+     let h = 0, formElements = [];
+     for(let i=0;i<this.children.length;i++){
+          if(this.children[i].id.match(/label|createSubmit/g) == null && this.children[i].value.length != 0){ formElements[h] = this.children[i].value;h++; }
+     }
+     if(formElements.length < 4){
+          console.log("Erreur un champ n'est pas rempli !");
+          return false;
+     }
+     console.table(formElements);
+     const serializer = serialize(this);
+     async function waitingForResponseInsert() {
+          const response = await fetch("./includes/insert.php?" + serializer);
+          const todoList = await response.json();
+          console.table(todoList);
+          if(todoList['success'].message == 'success'){
+               console.log('Insert [task] effectué...');
+               window.location.reload();
+          }
+     }
+
+     waitingForResponseInsert();
+});
 
 
 const check = document.querySelectorAll('.id-checkbox');
