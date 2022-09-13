@@ -7,9 +7,9 @@ function meta() : string{
     <link rel="shortcut icon" href="./">
     <title>Gestion Tasks</title>
     <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/global.css?">
+    <link rel="stylesheet" href="css/global.css?'.time().'">
     <link rel="stylesheet" href="css/style.css?'.time().'">
-    <link rel="stylesheet" href="css/media.css">
+    <link rel="stylesheet" href="css/media.css?'.time().'">
     <link rel="icon" type="image/png" href="favicon.png">';
 }
 
@@ -40,6 +40,7 @@ function nav() : string{
 function footer() : string{
     return '
     <footer class="footer">&copy; 2022 - Yann / Wildo</footer>
+    <script src="js/functions.js"></script>
     <script src="js/script.js"></script>
     </body>
     </html>';
