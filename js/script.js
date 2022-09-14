@@ -55,34 +55,45 @@ if(window.innerWidth >= 1024){
      document.querySelector('.ul-navbar').classList.remove('active');
 }
 
-const formCreate = document.getElementById('form-create-task');
-formCreate.addEventListener('submit',function(event){
-     event.preventDefault();
 
-     let h = 0, formElements = [];
-     for(let i=0;i<this.children.length;i++){
-          if(this.children[i].id.match(/label|createSubmit/g) == null && this.children[i].value.length != 0){ formElements[h] = this.children[i].value;h++; }
-     }
-     if(formElements.length < 4){
-          console.log("Erreur un champ n'est pas rempli !");
-          return false;
-     }
-     console.table(formElements);
-     const serializer = serialize(this);
-     async function waitingForResponseInsert() {
-          const response = await fetch("./includes/insert.php?" + serializer);
-          const todoList = await response.json();
-          console.table(todoList);
-          if(todoList['success'].message == 'success'){
-               console.log('Insert [task] effectué...');
-               window.location.reload();
+/*** Action to create a task ***/
+if(document.getElementById('form-create-task')){
+     const formCreate = document.getElementById('form-create-task');
+     formCreate.addEventListener('submit',function(event){
+          event.preventDefault();
+
+          let h = 0, formElements = [];
+          for(let i=0;i<this.children.length;i++){
+               if(this.children[i].id.match(/label|createSubmit/g) == null && this.children[i].value.length != 0){
+                    console.log(i + "->");
+                    if(i === 3){
+                         formElements[h] = getSelectValues(this.children[i]).join(" ");
+                    }
+                    else formElements[h] = this.children[i].value;h++;
+               }
           }
-     }
+          if(formElements.length < 5){
+               console.log("Erreur un champ n'est pas rempli ! [" + formElements.length + "]");
+               return false;
+          }
+          console.table(formElements);
+          const serializer = serialize(this);
+          console.log(serializer);
+          async function waitingForResponseInsert() {
+               const response = await fetch("./includes/insert.php?" + serializer);
+               const todoList = await response.json();
+               console.table(todoList);
+               if(todoList['success'].message == 'success'){
+                    console.log('Insert [task] effectué...');
+                    window.location.reload();
+               }
+          }
 
-     waitingForResponseInsert();
-});
+          waitingForResponseInsert();
+     });
+}
 
-
+/*** Action to update cell "done" ***/
 const check = document.querySelectorAll('.id-checkbox');
 check.forEach(element => element.addEventListener('change', function (event) {
      const id_checked = this.id.match(/\d+/)[0];
@@ -101,6 +112,7 @@ check.forEach(element => element.addEventListener('change', function (event) {
      waitingForResponseChecked();
 }));
 
+/*** Action to update cell "description" ***/
 const description = document.querySelectorAll( '.btn-description');
 description.forEach(element => element.addEventListener('click', function (event) {
      const id_description = this.id.match(/\d+/)[0];

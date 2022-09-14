@@ -3,14 +3,14 @@
     <form method="get" action="index.php?page=6" name="form-create-task" id="form-create-task" class="formCreate">
         <label for="nameTask" id="labelTask">Nom de la tâche</label>
         <input type="text" id="nameTask" name="nameTask" placeholder="Entrer nom de la tâche">
-        <label for="selectTheme" id="labelTheme">Thème de la tâche</label>
-        <select id="selectTheme" name="selectTheme" class="select-theme">
+        <label for="selectTheme" id="labelTheme">Thème de la tâche<p><i class="fa fa-question-circle" id="iQuestion"aria-hidden="true"></i></p></label>
+        <select id="selectTheme" name="selectTheme" class="select-theme" multiple>
             <option selected readonly>Thème de la tâche</option>
             <option readonly></option>
             <?php
 
-                foreach($themes as $theme){
-                    echo '<option value="'.$theme['name'].'">'.$theme['name'].'</option>';
+                foreach($themes as $index=>$theme){
+                    echo '<option value="'.$index.'">'.$theme['name'].'</option>';
                 }
 
             ?>
@@ -39,6 +39,8 @@
 
             ?>
         </select>
+        <label for="inputDate" id="labelDate">Choix de la date de rappel</label>
+        <input type="date" id="inputDate" name="inputDate">
         <input type="submit" value="Enregistrer la tâche" id="createSubmit">
     </form>
 </div>
