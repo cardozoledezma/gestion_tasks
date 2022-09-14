@@ -13,18 +13,18 @@
             "date_reminder" => $_REQUEST['inputDate'],
             "done"          => 0,
             "id_users"      => 0
-        ]
+            ]
     );
 
     if($test1){
-
         $sql_count = "SELECT * FROM task;";
         $requete = $dbCo->prepare($sql_count);
         $requete->execute();
-        $count = $requete->rowCount();
+        $count = $requete->rowCount()+1;
 
         $selectTheme = array_filter(explode("~", $_REQUEST['selectTheme']), fn($r) => $r != '');
         sort($selectTheme);
+
         foreach($selectTheme as $select){
             $SQL2 = "INSERT INTO contain (id_task, id_theme) VALUES (:id_task, :id_theme);";
             $requete = $dbCo->prepare($SQL2);
@@ -32,12 +32,12 @@
                 [
                     "id_task"       => $count,
                     "id_theme"      => $select
-                ]
-            );
-
+                    ]
+                );
+            }
         }
-    }
 
-    echo json_encode(["success" => $boolResquest , "REQUEST" => $_REQUEST['selectTheme'], "THEME" => $selectTheme, "COUNT" => $count]);
+        header("Content-Type: application/json charset=UTF-8");
+        echo json_encode(["success" => $boolResquest , "REQUEST" => $_REQUEST['selectTheme'], "THEME" => $selectTheme, "COUNT" => $count]);
 
 ?>

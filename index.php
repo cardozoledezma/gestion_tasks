@@ -2,16 +2,18 @@
     /** INCLUSION DES VARIABLES GLOBALES **/
     require_once "globals.php";
     require_once "functions.php";
+    $page = new Page;
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <?=meta()?>
+        <?=$page->meta()?>
     </head>
     <body class="site">
-        <?=head()?>
-        <?=nav()?>
+        <?=$page->message()?>
+        <?=$page->head()?>
+        <?=$page->nav()?>
         <main class="main">
             <?php
 
@@ -28,4 +30,4 @@
 
         ?>
     </main>
-<?=footer()?>
+<?=$page->footer()?>
