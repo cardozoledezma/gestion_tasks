@@ -5,8 +5,8 @@
         <input type="text" id="nameTask" name="nameTask" placeholder="Entrer nom de la tâche">
         <label for="selectTheme" id="labelTheme">Thème de la tâche<p><i class="fa fa-question-circle" id="iQuestion"aria-hidden="true"></i></p></label>
         <select id="selectTheme" name="selectTheme" class="select-theme" multiple>
-            <option selected readonly>Thème de la tâche</option>
-            <option readonly></option>
+            <option readonly disabled>Thème de la tâche</option>
+            <option readonly disabled></option>
             <?php
 
                 foreach($themes as $index=>$theme){
@@ -17,8 +17,8 @@
         </select>
         <label for="selectPriority" id="labelPriority">Priorité de la tâche</label>
         <select id="selectPriority" name="selectPriority" class="select-priority">
-            <option selected readonly>Priorité de la tâche</option>
-            <option readonly></option>
+            <option readonly disabled>Priorité de la tâche</option>
+            <option readonly disabled></option>
             <?php
 
                 for($i=1;$i<=5;$i++){
@@ -29,8 +29,8 @@
         </select>
         <label for="selectColor" id="labelColor">Choix de la couleur de la tâche</label>
         <select id="selectColor" name="selectColor" class="select-color">
-            <option selected readonly>Choix de la couleur</option>
-            <option readonly></option>
+            <option readonly disabled>Choix de la couleur</option>
+            <option readonly disabled></option>
             <?php
 
                 for($i=1;$i<=8;$i++){
