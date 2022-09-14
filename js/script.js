@@ -55,6 +55,8 @@ if(window.innerWidth >= 1024){
      document.querySelector('.ul-navbar').classList.remove('active');
 }
 
+
+/*** Action to create a task ***/
 const formCreate = document.getElementById('form-create-task');
 formCreate.addEventListener('submit',function(event){
      event.preventDefault();
@@ -82,7 +84,7 @@ formCreate.addEventListener('submit',function(event){
      waitingForResponseInsert();
 });
 
-
+/*** Action to update cell "done" ***/
 const check = document.querySelectorAll('.id-checkbox');
 check.forEach(element => element.addEventListener('change', function (event) {
      const id_checked = this.id.match(/\d+/)[0];
@@ -101,6 +103,7 @@ check.forEach(element => element.addEventListener('change', function (event) {
      waitingForResponseChecked();
 }));
 
+/*** Action to update cell "description" ***/
 const description = document.querySelectorAll( '.btn-description');
 description.forEach(element => element.addEventListener('click', function (event) {
      const id_description = this.id.match(/\d+/)[0];
