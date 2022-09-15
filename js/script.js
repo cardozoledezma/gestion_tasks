@@ -5,7 +5,7 @@ function parameter($name,$value) {
      var $loc = window.location.href, $hist= window.history, $parameters = $loc.match(/[\\?&].([^&#]*)=([^&#]*)/g), $data = {}, $url = '?';
      for (var $key in $parameters) {
           var couple = $parameters[$key].substring(1, $parameters[$key].length).split('=');  // A chaque fois qu'on trouve l'occurrence "="
-          $data[couple[0]] = couple[1];                                                      // Tableau 
+          $data[couple[0]] = couple[1];                                                      // Tableau
      }
      if ($value == null)  return $data[$name] ? $data[$name] : null;
      if ($value != false) $data[$name] = $value;
@@ -16,6 +16,10 @@ function parameter($name,$value) {
      }
      $hist.pushState('', document.title, $url.substring(0, $url.length-1));                 // On modifie l'historique de navigation
 }
+
+document.querySelector('.ul-navbar').addEventListener('click', function (event) {
+     this.classList.remove('active');
+});
 
 if(document.getElementById('sort-priority')) document.getElementById('sort-priority').addEventListener('change', function (event) {
      console.log(typeof parseInt(this.value));
