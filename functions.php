@@ -1,11 +1,16 @@
 <?php
 
-
 class Page{
 
-    public string $charset = "UTF-8";
-    public string $favicon = "favicon.png";
-    public string $title = "Gestion des tâches";
+    public string $charset = "";
+    public string $favicon = "";
+    public string $title = "";
+
+    public function __construct(string $charset, string $favicon, string $title){
+        $this->charset = $charset;
+        $this->favicon = $favicon;
+        $this->title = $title;
+    }
 
     public function message() : string{
         return '<div class="message"></div>';

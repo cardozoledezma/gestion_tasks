@@ -2,7 +2,7 @@
     /** INCLUSION DES VARIABLES GLOBALES **/
     require_once "globals.php";
     require_once "functions.php";
-    $page = new Page;
+    $page = new Page("UTF-8", "favicon.png", "Gestion des tâches");
 ?>
 
 <!DOCTYPE html>
