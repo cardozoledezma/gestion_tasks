@@ -1,13 +1,5 @@
 // messageInfo( "Le script est lancé..." );
 
-document.querySelector('.message').innerHTML = "<p class='pInfo'>";
-function messageInfo(infos){
-     document.querySelector('.message').innerHTML +=  infos + "<br>";
-     document.querySelector('.message').classList.add('active');
-}
-document.querySelector('.message').innerHTML = "</p>";
-
-
 document.querySelector('.message').addEventListener('click', function(event){
      if(document.querySelector('.message').classList.contains('active')){
           document.querySelector('.message').classList.add('noactive');
@@ -138,13 +130,14 @@ check.forEach(element => element.addEventListener('change', function (event) {
 
 //      waitingForResponseUpdate();
 // }));
+const button = document.querySelectorAll(".btn-description");
 const form = document.querySelectorAll(".formAccueil");
-form.forEach(elem => elem.addEventListener('submit', function (event) {
+button.forEach(elem => elem.addEventListener('click', function (event) {
      event.preventDefault();
+     messageInfo(this);
      const serial = serialize(this);
      const ID = this.id.match(/\d+/)[0];
-     const tabElements = this.elements;
-     console.table(tabElements);
+     messageInfo(serial);
 
 
      // messageInfo( "&id="+ ID + "&" + serial + "&themes=");

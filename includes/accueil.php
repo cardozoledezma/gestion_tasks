@@ -54,7 +54,7 @@ foreach($results as $task){
         $list .= implode(" ", $themeTask);
         $list .= "      </div>";
         $list .= "      <div class='div-checkbox'><span>Valider</span><input type='checkbox' value='".$task['id_task']."' id='id-checkbox".$task['id_task']."' name='id-checkbox".$task['id_task']."' class='id-checkbox' ".($task['done'] ? "checked" : "")."/></div>";
-        $list .= "      <div class='div-description'><input type='submit' value='Save changes' class='btn-description' id='btn-description".$task['id_task']."' name='btn-description".$task['id_task']."' /></div>";
+        $list .= "      <div class='div-description'><button class='btn-description' id='btn-description".$task['id_task']."' name='btn-description".$task['id_task']."'><i class='fa fa-floppy-o' aria-hidden='true'></i></button></div>";
         $list .= "  </li>";
         $list .= "</form>";
         $j++;
