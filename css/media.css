@@ -90,5 +90,9 @@
     .footer{ grid-area: 4 / 2; }
 
     .theme{ white-space: pre-line; }
+    .infosSelectMultiple{
+        width: 12vw;
+        height: auto;
+    }
     .formCreate{ grid-template-columns: 1fr 15% 30% 1fr; }
 }

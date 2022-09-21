@@ -8,7 +8,7 @@
         $requete = $dbCo->prepare($SQL);
         $test1 = $requete->execute(
             [
-                "description"   => $_REQUEST['name000Task'],
+                "description"   => $_REQUEST['nameTask'],
                 "color"         => $_REQUEST['selectColor'],
                 "priority"      => $_REQUEST['selectPriority'],
                 "date_reminder" => $_REQUEST['inputDate'],
@@ -17,7 +17,7 @@
                 ]
         );
     }
-    catch (Exception $e) { echo json_encode(["error" => $e->getMessage()]); }
+    catch (Exception $e) { echo json_encode(["error" => $e->getMessage()]);exit; }
 
     if($test1){
         $sql_count = "SELECT * FROM task;";
@@ -29,18 +29,21 @@
         sort($selectTheme);
 
         foreach($selectTheme as $select){
-            $SQL2 = "INSERT INTO contain (id_task, id_theme) VALUES (:id_task, :id_theme);";
-            $requete = $dbCo->prepare($SQL2);
-            $boolResquest = $requete->execute(
-                [
-                    "id_task"       => $count,
-                    "id_theme"      => $select
+            try{
+                $SQL2 = "INSERT INTO contain (id_task, id_theme) VALUES (:id_task, :id_theme);";
+                $requete = $dbCo->prepare($SQL2);
+                $boolResquest = $requete->execute(
+                    [
+                        "id_task"       => $count,
+                        "id_theme"      => $select
                     ]
                 );
             }
+            catch (Exception $e) { echo json_encode(["error" => $e->getMessage()]);exit; }
         }
+    }
 
-        header("Content-Type: application/json charset=UTF-8");
-        echo json_encode(["success" => $boolResquest , "REQUEST" => $_REQUEST['selectTheme'], "THEME" => $selectTheme, "COUNT" => $count]);
+    header("Content-Type: application/json charset=UTF-8");
+    echo json_encode(["success" => $boolResquest , "REQUEST" => $_REQUEST['selectTheme'], "THEME" => $selectTheme, "COUNT" => $count]);
 
 ?>

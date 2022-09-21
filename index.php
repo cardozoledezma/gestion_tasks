@@ -1,10 +1,20 @@
 <?php
+    spl_autoload_register();
     /** INCLUSION DES VARIABLES GLOBALES **/
-    require_once "globals.php";
+    require_once "_config.php";
     require_once "functions.php";
-    $page = new Page("UTF-8", "favicon.png", "Gestion des tâches");
-?>
 
+    use App\Models\Task;
+    use App\Models\Theme;
+
+    $page = new Page("UTF-8", "favicon.png", "Gestion des tâches");
+
+    $tasks = new Task;
+    $themes = new Theme;
+
+    /*** REQUEST ONGOING TASKS ***/
+    $results = $tasks->getAll();
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
