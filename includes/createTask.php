@@ -1,3 +1,8 @@
+<?php
+
+$themes = array_map(fn($t) => ["name"=>$t['theme_name']], $themes->getThemes());
+
+?>
 <div class="title">Liste des tâches en cours</div>
 <div class="divFormCreate">
     <form method="get" action="index.php?page=6" name="form-create-task" id="form-create-task" class="formCreate">
