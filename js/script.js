@@ -1,24 +1,30 @@
-console.log( "Le script est lancé..." );
+// messageInfo( "Le script est lancé..." );
 
-function parameter($name,$value) {
-     // Ex: $(this).parameter([nom],[valeur]);
-     var $loc = window.location.href, $hist= window.history, $parameters = $loc.match(/[\\?&].([^&#]*)=([^&#]*)/g), $data = {}, $url = '?';
-     for (var $key in $parameters) {
-          var couple = $parameters[$key].substring(1, $parameters[$key].length).split('=');  // A chaque fois qu'on trouve l'occurrence "="
-          $data[couple[0]] = couple[1];                                                      // Tableau 
-     }
-     if ($value == null)  return $data[$name] ? $data[$name] : null;
-     if ($value != false) $data[$name] = $value;
-
-     for (var $key in $data) {
-          if ($value == false && $key == $name) continue;                                    // On passe si la valeur est fausse ou si la clé est égale au nom
-          $url = $url.concat($key.concat('=' + $data[$key]+'&'));                            // Concaténation de la nouvelle adresse
-     }
-     $hist.pushState('', document.title, $url.substring(0, $url.length-1));                 // On modifie l'historique de navigation
+document.querySelector('.message').innerHTML = "<p class='pInfo'>";
+function messageInfo(infos){
+     document.querySelector('.message').innerHTML +=  infos + "<br>";
+     document.querySelector('.message').classList.add('active');
 }
+document.querySelector('.message').innerHTML = "</p>";
+
+
+document.querySelector('.message').addEventListener('click', function(event){
+     if(document.querySelector('.message').classList.contains('active')){
+          document.querySelector('.message').classList.add('noactive');
+          document.querySelector('.message').classList.remove('active');
+     }
+     else{
+          document.querySelector('.message').classList.add('active');
+          document.querySelector('.message').classList.remove('noactive');
+     }
+});
+
+document.querySelector('.ul-navbar').addEventListener('click', function (event) {
+     this.classList.remove('active');
+});
 
 if(document.getElementById('sort-priority')) document.getElementById('sort-priority').addEventListener('change', function (event) {
-     console.log(typeof parseInt(this.value));
+     messageInfo(typeof parseInt(this.value));
      if(!this.value.match(/priorité/g)){
           parameter("sort", this.value);
           window.location.href = window.location.href;
@@ -73,20 +79,21 @@ if(document.getElementById('form-create-task')){
                }
           }
           if(formElements.length < 5){
-               console.log("Erreur un champ n'est pas rempli ! [" + formElements.length + "]");
+               messageInfo("Erreur un champ n'est pas rempli ! [" + formElements.length + "]");
                return false;
           }
           console.table(formElements);
           const serializer = serialize(this);
-          console.log(serializer);
+          messageInfo(serializer);
           async function waitingForResponseInsert() {
                const response = await fetch("./includes/insert.php?" + serializer);
                const todoList = await response.json();
                console.table(todoList);
                if(todoList['success'].message == 'success'){
-                    console.log('Insert [task] effectué...');
+                    messageInfo('Insert [task] effectué...');
                     window.location.reload();
                }
+               else messageInfo(todoList);
           }
 
           waitingForResponseInsert();
@@ -102,9 +109,8 @@ check.forEach(element => element.addEventListener('change', function (event) {
      async function waitingForResponseChecked() {
           const response = await fetch("./includes/update.php?status=done&id=" + id_checked + "&checked=" + valid_checked);
           const todoList = await response.json();
-          // console.table(todoList);
           if(todoList['success'].message == 'success'){
-               console.log('Update [done] effectué...');
+               messageInfo('Update [done] effectué...');
                window.location.reload();
           }
      }
@@ -113,20 +119,43 @@ check.forEach(element => element.addEventListener('change', function (event) {
 }));
 
 /*** Action to update cell "description" ***/
-const description = document.querySelectorAll( '.btn-description');
-description.forEach(element => element.addEventListener('click', function (event) {
-     const id_description = this.id.match(/\d+/)[0];
-     const text_description = document.getElementById("id-description"+id_description).value;
+// const description = document.querySelectorAll('.btn-description');
+// description.forEach(element => element.addEventListener('click', function (event) {
+//      const id_description = this.id.match(/\d+/)[0];
+//      const text_description = document.getElementById("id-description"+id_description).value;
+//      const serial = serializer(this.parent);
+//      messageInfo(element);
+//
+//      async function waitingForResponseUpdate() {
+//           const response = await fetch("./includes/update.php?status=description&id=" + id_description + "&value=" + text_description);
+//           const todoList = await response.json();
+//           if(todoList['success'].message == 'success'){
+//                messageInfo('Update [description] effectué...');
+//                // window.location.reload();
+//           }
+//           else messageInfo('Update n\'a pas été effectué...');
+//      }
 
-     async function waitingForResponse() {
-          const response = await fetch("./includes/update.php?status=description&id=" + id_description + "&value=" + text_description);
-          const todoList = await response.json();
-          // console.table(todoList);
-          if(todoList['success'].message == 'success'){
-               console.log('Update [description] effectué...');
-               // window.location.reload();
-          }
-     }
+//      waitingForResponseUpdate();
+// }));
+const form = document.querySelectorAll(".formAccueil");
+form.forEach(elem => elem.addEventListener('submit', function (event) {
+     event.preventDefault();
+     const serial = serialize(this);
+     const ID = this.id.match(/\d+/)[0];
+     const tabElements = this.elements;
+     console.table(tabElements);
 
-     waitingForResponse();
+
+     // messageInfo( "&id="+ ID + "&" + serial + "&themes=");
+
+     // async function waitingForResponseUpdate() {
+     //      const response = await fetch("./includes/update.php?status=description&id=" + ID + "&" + serial);
+     //      const update = await response.json();
+     //      if(update['success'].message == 'success'){
+     //           messageInfo('Update [description] effectué...');
+     //           // window.location.reload();
+     //      }
+     //      else messageInfo('Update n\'a pas été effectué...');
+     // }
 }));
