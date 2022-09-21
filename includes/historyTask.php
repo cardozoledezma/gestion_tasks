@@ -1,8 +1,10 @@
 <?php
 
 $list = "<div class='title'>Historique des tâches</div>";
+$listTH = array_map( fn($t) => ["id_task"=>$t['id_task'], "id_theme"=>$t['id_theme'], "theme_name"=>$t['theme_name']], $tasks->getListThemes() );
+$themes = array_map(fn($t) => ["name"=>$t['theme_name']], $tasks->getThemes());
 
-foreach($tasks as $task){
+foreach($results as $task){
 
     $themeTask = [];
 
