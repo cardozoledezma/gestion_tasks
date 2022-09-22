@@ -1,5 +1,6 @@
 // messageInfo( "Le script est lancé..." );
 
+<<<<<<< HEAD
 document.querySelector('.message').innerHTML = "<p class='pInfo'>";
 function messageInfo(infos){
      document.querySelector('.message').innerHTML +=  infos + "<br>";
@@ -19,6 +20,8 @@ colors.addEventListener("change", function(event){
 
 
 
+=======
+>>>>>>> 0a6b1e801f5e10686854c690064a59f70ed58a57
 document.querySelector('.message').addEventListener('click', function(event){
      if(document.querySelector('.message').classList.contains('active')){
           document.querySelector('.message').classList.add('noactive');
@@ -150,13 +153,14 @@ check.forEach(element => element.addEventListener('change', function (event) {
 
 //      waitingForResponseUpdate();
 // }));
+const button = document.querySelectorAll(".btn-description");
 const form = document.querySelectorAll(".formAccueil");
-form.forEach(elem => elem.addEventListener('submit', function (event) {
+button.forEach(elem => elem.addEventListener('click', function (event) {
      event.preventDefault();
+     messageInfo(this);
      const serial = serialize(this);
      const ID = this.id.match(/\d+/)[0];
-     const tabElements = this.elements;
-     console.table(tabElements);
+     messageInfo(serial);
 
      messageInfo( "&id="+ ID + "&" + serial + "&themes=");
 

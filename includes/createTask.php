@@ -1,10 +1,14 @@
 <?php
 
+<<<<<<< HEAD
 namespace App\Models;
 
 use App\Models\Task;
 
 if(isset($_SERVER['HTTP_REFERER']) && $_SERVER['HTTP_REFERER'] != null){
+=======
+$themes = array_map(fn($t) => ["name"=>$t['theme_name']], $themes->getThemes());
+>>>>>>> 0a6b1e801f5e10686854c690064a59f70ed58a57
 
 ?>
 <div class="title">Liste des tâches en cours</div>

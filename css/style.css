@@ -26,9 +26,14 @@ body{
     width: 100%;
     height: auto;
     padding: 2vh 0;
+<<<<<<< HEAD
     background-color: var(--light-yellow);
     overflow-y: auto;
     font-size: 2rem;
+=======
+    background-color: rgb(238, 247, 159);
+    overflow-y: auto;
+>>>>>>> 0a6b1e801f5e10686854c690064a59f70ed58a57
 }
 .pInfo{
     color: white;
@@ -38,6 +43,7 @@ body{
     font-weight: bold;
     background-color: rgb(236, 131, 124);
 }
+<<<<<<< HEAD
 .infoReferer{
     background-color: var(--light-yellow);
     color: blue;
@@ -47,6 +53,8 @@ body{
     align-items: center;
     justify-content: center;
 }
+=======
+>>>>>>> 0a6b1e801f5e10686854c690064a59f70ed58a57
 
 @keyframes slideDown {
     0%{ height : 0vh; }
