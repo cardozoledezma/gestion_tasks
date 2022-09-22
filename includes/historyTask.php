@@ -1,8 +1,8 @@
 <?php
 
 $list = "<div class='title'>Historique des tâches</div>";
-$listTH = array_map( fn($t) => ["id_task"=>$t['id_task'], "id_theme"=>$t['id_theme'], "theme_name"=>$t['theme_name']], $tasks->getListThemes() );
-$themes = array_map(fn($t) => ["name"=>$t['theme_name']], $tasks->getThemes());
+$listTH = array_map( fn($t) => ["id_task"=>$t['id_task'], "id_theme"=>$t['id_theme'], "theme_name"=>$t['theme_name']], $themes->getListThemes() );
+$themes = array_map(fn($t) => ["name"=>$t['theme_name']], $themes->getThemes());
 
 foreach($results as $task){
 
@@ -11,7 +11,7 @@ foreach($results as $task){
     if ($task['done'] && $task['id_task'] != $nextID){
         $list .= "<form merthod='GET' action='update.php?id=".$task['id_task']."' id='formAccueil' name='formAccueil'>";
         $list .= $j == 0 ? "<li class='cellList refs'><div>Description</div><div>Priority</div><div>Date_reminder</div><div>Thème</div><div>ToDo</div><div>Save</div></li>" : "";
-        $list .= "  <li class='cellList' style='background-color: #".$colors[$task['color']-1].";'>";
+        $list .= "  <li class='cellList' style='background-color: ".$task['color'].";'>";
         $list .= "      <div class='description'><input type='text' value='".$task['description']."' id='id-description".$task['id_task']."' name='id-description".$task['id_task']."' ></div>";
         $list .= "      <div class='priority'>";
         $list .="           <span>Priorité</span><select id='select-priority' name='select-priority'>";

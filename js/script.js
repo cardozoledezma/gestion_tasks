@@ -8,6 +8,17 @@ function messageInfo(infos){
 document.querySelector('.message').innerHTML = "</p>";
 
 
+let selectColor;
+let colors = document.querySelector('.choice-color');
+let defaultColor = "#f6b73c";
+colors.value = defaultColor;
+colors.addEventListener("change", function(event){
+     document.getElementById('selectColor').value =  event.target.value;
+});
+
+
+
+
 document.querySelector('.message').addEventListener('click', function(event){
      if(document.querySelector('.message').classList.contains('active')){
           document.querySelector('.message').classList.add('noactive');
@@ -84,9 +95,9 @@ if(document.getElementById('form-create-task')){
           }
           console.table(formElements);
           const serializer = serialize(this);
-          messageInfo(serializer);
+          // messageInfo(serializer);
           async function waitingForResponseInsert() {
-               const response = await fetch("./includes/insert.php?" + serializer);
+               const response = await fetch("insert.php?" + serializer);
                const todoList = await response.json();
                console.table(todoList);
                if(todoList['success'].message == 'success'){
@@ -107,9 +118,10 @@ check.forEach(element => element.addEventListener('change', function (event) {
      const valid_checked = this.checked;
 
      async function waitingForResponseChecked() {
-          const response = await fetch("./includes/update.php?status=done&id=" + id_checked + "&checked=" + valid_checked);
+          const response = await fetch("update.php?status=done&id=" + id_checked + "&checked=" + valid_checked);
           const todoList = await response.json();
-          if(todoList['success'].message == 'success'){
+          console.table(todoList['success']);
+          if(todoList['success'].message){
                messageInfo('Update [done] effectué...');
                window.location.reload();
           }
@@ -146,16 +158,15 @@ form.forEach(elem => elem.addEventListener('submit', function (event) {
      const tabElements = this.elements;
      console.table(tabElements);
 
+     messageInfo( "&id="+ ID + "&" + serial + "&themes=");
 
-     // messageInfo( "&id="+ ID + "&" + serial + "&themes=");
-
-     // async function waitingForResponseUpdate() {
-     //      const response = await fetch("./includes/update.php?status=description&id=" + ID + "&" + serial);
-     //      const update = await response.json();
-     //      if(update['success'].message == 'success'){
-     //           messageInfo('Update [description] effectué...');
-     //           // window.location.reload();
-     //      }
-     //      else messageInfo('Update n\'a pas été effectué...');
-     // }
+     async function waitingForResponseUpdate() {
+          const response = await fetch("update.php?status=description&id=" + ID + "&" + serial);
+          const update = await response.json();
+          if(update['success'].message == 'success'){
+               messageInfo('Update [description] effectué...');
+               window.location.reload();
+          }
+          else messageInfo('Update n\'a pas été effectué...');
+     }
 }));

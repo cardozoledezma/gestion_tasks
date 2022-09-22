@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Pages;
+
 class Page{
 
     public string $charset = "";
