@@ -23,7 +23,6 @@ class Task extends Model{
 
     public function getAllDone():array {
         $query  = self::$connection->query("SELECT * FROM task WHERE done = 1;");
-        var_dump($query);
         return $query->fetchAll();
     }
 
@@ -46,7 +45,6 @@ class Task extends Model{
         $sqlReq .= isset($_REQUEST['theme'])    ? " AND c.id_theme = ".self::getSortTheme() : "";
 
         self::setSql($sqlReq);
-        // var_dump($sqlReq);
 
         $query  = self::$connection->query(self::getSql());
         return $query->fetchAll();

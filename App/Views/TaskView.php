@@ -221,7 +221,17 @@ class TaskView extends View{
     }
 
     public function connectionTask():string {
-        return "CONNECTION PAGE";
+        return "
+        <div class='pageConnexion'>
+            <form merthod='POST' action='bddConnexion.php' id='formConnexion' name='formConnexion'>
+            <ul>
+                <li><input type='text'></li>
+                <li><input type='password'></li>
+                <li><input type='button'></li>
+            </ul>
+            </form>
+        </div>
+        ";
     }
 
     public function footer():string {
