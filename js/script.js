@@ -11,13 +11,15 @@ document.querySelector('.message').addEventListener('click', function(event){
      }
 });
 
-let selectColor;
-let colors = document.querySelector('.choice-color');
-let defaultColor = "#f6b73c";
-colors.value = defaultColor;
-colors.addEventListener("change", function(event){
-     document.getElementById('selectColor').value =  event.target.value;
-});
+if(parameter('dir') == 2){
+     let selectColor;
+     let colors = document.querySelector('.choice-color');
+     let defaultColor = "#f6b73c";
+     colors.value = defaultColor;
+     colors.addEventListener("change", function(event){
+          document.getElementById('selectColor').value =  event.target.value;
+     });
+}
 
 if(document.querySelector('.xdebug-var-dump')) document.querySelector('.xdebug-var-dump').addEventListener('click', function(event){
      this.style.display = "none";
@@ -79,7 +81,10 @@ if(document.getElementById('form-create-task')){
                     if(i === 3){
                          formElements[h] = getSelectValues(this.children[i]).join(" ");
                     }
-                    else formElements[h] = this.children[i].value;h++;
+                    else{
+                         formElements[h] = this.children[i].value;
+                         h++;
+                    }
                }
           }
           if(formElements.length < 5){
@@ -94,7 +99,6 @@ if(document.getElementById('form-create-task')){
                const todoList = await response.json();
                console.table(todoList);
                if(todoList['success'].message == 'success'){
-                    messageInfo('Insert [task] effectué...');
                     window.location.reload();
                }
                else messageInfo(todoList);
@@ -114,7 +118,6 @@ check.forEach(element => element.addEventListener('change', function (event) {
           const response = await fetch("./includes/update.php?status=done&id=" + id_checked + "&checked=" + valid_checked);
           const update = await response.json();
           if(update['success'].message == 'success'){
-               messageInfo('Update [done] effectué...');
                window.location.reload();
           }
           else messageInfo('Update n\'a pas été effectué...');
@@ -133,8 +136,8 @@ description.forEach(element => element.addEventListener('click', function (event
 
      async function waitingForResponseUpdate() {
           const response = await fetch("./includes/update.php?status=description&id=" + id_description + "&value=" + text_description);
-          const todoList = await response.json();
-          if(todoList['success'].message == 'success'){
+          const update = await response.json();
+          if(update['success'].message == 'success'){
                messageInfo('Update [description] effectué...');
                window.location.reload();
           }
@@ -158,7 +161,7 @@ button.forEach(elem => elem.addEventListener('click', function (event) {
           const update = await response.json();
           if(update['success'].message == 'success'){
                messageInfo('Update [description] effectué...');
-               window.location.reload();
+               window.location.href = window.location.href;
           }
           else messageInfo('Update n\'a pas été effectué...');
      }

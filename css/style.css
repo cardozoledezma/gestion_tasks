@@ -142,6 +142,7 @@ body{
     height: 100%;
 }
 .header, .footer{ color: var(--white);}
+#mobile-icon{ margin-right: 1rem; }
 .nav-burger{
     font-size: 2.5rem;
     color: var(--white);
@@ -155,7 +156,6 @@ body{
 .fa.fa-question-circle{ background: none;color: red;font-size: 2rem; }
 .fa.fa-floppy-o{ font-size: 2rem;color: var(--bg-black); background-color: var(--white); }
 
-#mobile-icon{ margin-right: 1rem; }
 .formCreate{
     white-space: pre-line;
 }
@@ -203,6 +203,7 @@ body{
     justify-content: center;
     width: 100%;
     height: 100%;
+    font-size: 2.5rem;
 }
 .cellList .date{ font-weight: bold; }
 
@@ -242,7 +243,7 @@ body{
 }
 .priority span, .div-checkbox span{ padding-right: 1rem; }
 
-.divFormCreate{
+.divFormCreate, .pageConnexion{
     background-color: #e6f2b6;
 }
 .formCreate{
@@ -250,7 +251,7 @@ body{
     padding: 2rem;
     height: 60vh;
     display: grid;
-    grid-template-columns: 1fr 50% 50% 1fr;
+    grid-template-columns: 1fr 30% 30% 1fr;
     grid-template-rows: 6% 55% repeat(3, 7%) 15%;
 }
 .formCreate #labelTask{
@@ -299,6 +300,38 @@ body{
     color: var(--white);
 }
 #iQuestion{ border-radius: 2rem;width: 1.5rem;height: 1.5rem; }
+.pageConnexion{
+    height: 20vh;
+}
+#formConnexion {
+    margin-top: 2rem;
+    padding: 2rem;
+    display: grid;
+    align-items: center;
+    justify-content: space-between;
+    grid-template-columns: 1fr 25rem 25rem 1fr;
+    gap: 3rem;
+}
+#formConnexion #logUser{
+    grid-area: 2/2;
+    width: 25rem;
+    text-align: center;
+}
+#formConnexion #passUser{
+    grid-area: 2/3;
+    width: 25rem;
+    text-align: center;
+}
+#formConnexion #btnConnexion, #formConnexion #btnInscription{
+    grid-area: 3/3;
+    width: 10rem;
+    height: 2rem;
+    align-self: flex-end;
+    justify-self: end;
+}
+#formConnexion #btnInscription{
+    justify-self: flex-start;
+}
 /***********/
 /** MODAL **/
 /***********/

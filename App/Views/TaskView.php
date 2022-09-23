@@ -223,12 +223,11 @@ class TaskView extends View{
     public function connectionTask():string {
         return "
         <div class='pageConnexion'>
-            <form merthod='POST' action='bddConnexion.php' id='formConnexion' name='formConnexion'>
-            <ul>
-                <li><input type='text'></li>
-                <li><input type='password'></li>
-                <li><input type='button'></li>
-            </ul>
+            <form merthod='POST' action='connexion.php' id='formConnexion' name='formConnexion'>
+                <input type='text' id='logUser' name='lonUser' placeholder='Pseudo'>
+                <input type='password' id='passUser' name='passUser' placeholder='Mot de passe'>
+                <input type='button' value='Inscription' id='btnInscription' name='btnInscription'>
+                <input type='submit' value='Se connecter' id='btnConnexion' name='btnConnexion'>
             </form>
         </div>
         ";

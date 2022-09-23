@@ -13,4 +13,9 @@
         $results = $tasks->insertTheme();
     }
 
+    header('Content-Type: application/json charset=UTF-8');
+    $datas = [ "success" => ["message" => ($results) ? "success" : "error"] ];
+    echo json_encode($datas);
+
+
 ?>

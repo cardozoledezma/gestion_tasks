@@ -49,22 +49,21 @@ class Task extends Model{
     }
 
     public static function updateTask():bool {
-        $sql = "UPDATE task SET done = :done WHERE id_task = :id_task;";
-
+        $sql = "UPDATE task SET done=:done WHERE id_task=:id_task;";
         $prepare = self::$connection->prepare($sql);
-        $result = $prepare->execute(
+        $results = $prepare->execute(
             [
-                'id_task' => $_REQUEST['id'],
-                'done' => $_REQUEST['checked']
+                'id_task' => intval($_REQUEST['id']),
+                'done' => ($_REQUEST['checked']=="true") ? 1 : 0
             ]
         );
-        return $result;
+        return $results;
     }
     public static function insertTask():bool {
         $sql = "INSERT INTO task (description, color, priority, date_reminder, done, id_users) VALUES (:description, :color, :priority, :date_reminder, :done, :id_users)";
 
         $prepare = self::$connection->prepare($sql);
-        $result = $prepare->execute(
+        $results =  $prepare->execute(
             [
                 "description"   => $_REQUEST['nameTask'],
                 "color"         => $_REQUEST['selectColor'],
@@ -72,10 +71,9 @@ class Task extends Model{
                 "date_reminder" => $_REQUEST['inputDate'],
                 "done"          => 0,
                 "id_users"      => 0
-            ]
-        );
-
-        return $result;
+                ]
+            );
+        return $results;
     }
     public static function insertTheme():bool {
         $results = false;
