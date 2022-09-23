@@ -1,10 +1,11 @@
 <?php
-    
-    namespace App\Models;
 
-    use App\Models\Task;
+    require_once "../App/Models/Model.php";
+    require_once "../App/Models/Task.php";
 
-    $tasks = new Task;
+    use App\Models\Task as TaskModel;
+
+    $tasks = new TaskModel;
 
     $status = isset($_REQUEST['status'])    ? $_REQUEST['status']   : false;
     $checked= isset($_REQUEST['checked'])   ? $_REQUEST['checked']  : false;
@@ -17,7 +18,7 @@
     else {
         if($status === "done"){
             $sql        = "UPDATE task SET done = $checked WHERE id_task = $id;";
-            $request    = $dbCo->prepare($sql);
+            $request    = self::$connection->prepare($sql);
             $return     = $request->execute();
 
             $data = [ "success" => ["message" => ($return) ? "success" : "error"] ];
@@ -25,7 +26,7 @@
         }
         if($status === "description"){
             $sql        = "UPDATE task SET description = '$value' WHERE id_task = $id;";
-            $request    = $dbCo->prepare($sql);
+            $request    = self::$connection->prepare($sql);
             $return     = $request->execute();
 
             $data = [ "success" => ["message" => ($return) ? "success" : "error"] ];

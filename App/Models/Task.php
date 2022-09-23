@@ -44,23 +44,63 @@ class Task extends Model{
         $sqlReq .= isset($_REQUEST['sort'])     ? " AND t.priority = ".self::getPriority() : "";
         $sqlReq .= isset($_REQUEST['theme'])    ? " AND c.id_theme = ".self::getSortTheme() : "";
 
-        self::setSql($sqlReq);
-
-        $query  = self::$connection->query(self::getSql());
+        $query  = self::$connection->query($sqlReq);
         return $query->fetchAll();
     }
 
-    public function updateTable(int $id, int $checked):bool {
-        self::setSql("UPDATE task SET done = :done WHERE id_task = :id_task;");
+    public static function updateTask():bool {
+        $sql = "UPDATE task SET done = :done WHERE id_task = :id_task;";
 
-        $prepare = self::$connection->prepare(self::getSql());
+        $prepare = self::$connection->prepare($sql);
         $result = $prepare->execute(
             [
-                'id_task' => $id,
-                'done' => $checked
+                'id_task' => $_REQUEST['id'],
+                'done' => $_REQUEST['checked']
             ]
         );
         return $result;
+    }
+    public static function insertTask():bool {
+        $sql = "INSERT INTO task (description, color, priority, date_reminder, done, id_users) VALUES (:description, :color, :priority, :date_reminder, :done, :id_users)";
+
+        $prepare = self::$connection->prepare($sql);
+        $result = $prepare->execute(
+            [
+                "description"   => $_REQUEST['nameTask'],
+                "color"         => $_REQUEST['selectColor'],
+                "priority"      => $_REQUEST['selectPriority'],
+                "date_reminder" => $_REQUEST['inputDate'],
+                "done"          => 0,
+                "id_users"      => 0
+            ]
+        );
+
+        return $result;
+    }
+    public static function insertTheme():bool {
+        $results = false;
+        $sql_count = "SELECT * FROM task;";
+        $requete = self::$connection->prepare($sql_count);
+        $requete->execute();
+        $count = $requete->rowCount();
+
+        $selectTheme = array_filter(explode("~", $_REQUEST['selectTheme']), fn($r) => $r != '');
+        sort($selectTheme);
+
+        foreach($selectTheme as $select){
+            try{
+                $SQL2 = "INSERT INTO contain (id_task, id_theme) VALUES (:id_task, :id_theme);";
+                $requete = self::$connection->prepare($SQL2);
+                $results = $requete->execute(
+                    [
+                        "id_task"       => $count,
+                        "id_theme"      => $select
+                    ]
+                );
+            }
+            catch (Exception $e) { echo json_encode(["error" => $e->getMessage()]);exit; }
+        }
+        return $results;
     }
 
 }

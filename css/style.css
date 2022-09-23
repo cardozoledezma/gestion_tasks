@@ -251,7 +251,7 @@ body{
     height: 60vh;
     display: grid;
     grid-template-columns: 1fr 50% 50% 1fr;
-    grid-template-rows: 6% 55% repeat(3, 6%) 15%;
+    grid-template-rows: 6% 55% repeat(3, 7%) 15%;
 }
 .formCreate #labelTask{
     grid-area: 1/2;
@@ -286,7 +286,7 @@ body{
 }
 .formCreate #inputDate{
     grid-area: 5/3;
-    height: 2rem;
+    height: 2.5rem;
 }
 .formCreate #createSubmit{
     grid-area: 6/3;

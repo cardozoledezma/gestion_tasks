@@ -23,7 +23,7 @@ abstract class Model{
         return $this->sql;
     }
     public function setSql(string $sql):void {
-        $this->sql = $sql;
+        $this->$sql = $sql;
     }
 }
 
