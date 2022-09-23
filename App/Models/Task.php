@@ -28,25 +28,22 @@ class Task extends Model{
     }
 
     public function getPriority():string {
-        return isset($_REQUEST['sort'])  ?  " t.priority=".$_REQUEST['sort']    : false;
+        return isset($_REQUEST['sort'])  ?  $_REQUEST['sort'] : false;
     }
 
     public function getSortTheme():string {
-        return isset($_REQUEST['theme']) ?  " c.id_theme=".$_REQUEST['theme']   : false;
+        return isset($_REQUEST['theme']) ?  $_REQUEST['theme'] : false;
     }
 
     public function getSortTables():array {
-        $where = [];
-        if(self::getPriority() != '')   $where[] = self::getPriority();
-        if(self::getSortTheme() != '')  $where[] = self::getSortTheme();
 
         $sqlReq = "SELECT *
         FROM task t
             JOIN contain c USING (id_task)
             JOIN theme th USING (id_theme)
         WHERE done = 0 ";
-        $issetWhere = (isset($_REQUEST['sort']) || isset($_REQUEST['theme'])) ? $where[0] : "";
-        $sqlReq .= (sizeof($where) >= 2) ? implode(' AND ',  $where) : $issetWhere;
+        $sqlReq .= isset($_REQUEST['sort'])     ? " AND t.priority = ".self::getPriority() : "";
+        $sqlReq .= isset($_REQUEST['theme'])    ? " AND c.id_theme = ".self::getSortTheme() : "";
 
         self::setSql($sqlReq);
         var_dump($sqlReq);
