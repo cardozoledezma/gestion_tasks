@@ -18,7 +18,7 @@ class TaskView extends View{
             "navigation" => self::nav(),
             "message" => self::message(),
             "titlemain" => self::title(),
-            "main" => self::main(),
+            "main" => self::getpage(),
             "footer" => self::footer(),
         ]);
         self::getContent();
@@ -26,7 +26,12 @@ class TaskView extends View{
         self::display();
     }
 
-    public function returnIdPage():int {
+    public function getPage():string {
+        if(self::getIdPage() == 2) return self::createTask();
+        elseif((self::getIdPage() == 5)) return self::connectionTask();
+        else return self::main();
+    }
+    public function getIdPage():int {
         return isset($_REQUEST['dir']) ? $_REQUEST['dir'] : 1;
     }
 
@@ -35,8 +40,8 @@ class TaskView extends View{
     }
 
     public function title():string{
-        $titles =["Liste des tâches en cours", "Créer une tâche", "Liste de toutes les tâches", "Historique des tâches"];
-        return $titles[self::returnIdPage()-1];
+        $titles =["Liste des tâches en cours", "Créer une tâche", "Liste de toutes les tâches", "Historique des tâches", "Page de connexion"];
+        return $titles[self::getIdPage()-1];
     }
 
     public function meta():string {
@@ -82,8 +87,8 @@ class TaskView extends View{
         $results = "";
         $tasks = new Task;
 
-        if(self::returnIdPage() === 1) $results = $tasks->getSortTables();
-        if(self::returnIdPage() === 3 || self::returnIdPage() == 4) $results = $tasks->getSortTables();
+        if(self::getIdPage() === 1) $results = $tasks->getAll();
+        if(self::getIdPage() === 3 || self::getIdPage() == 4) $results = $tasks->getSortTables();
 
         $themes = new Theme;
         $listTH = array_map( fn($t) => ["id_task"=>$t['id_task'], "id_theme"=>$t['id_theme'], "theme_name"=>$t['theme_name']], $themes->getListThemes() );
@@ -109,7 +114,7 @@ class TaskView extends View{
         $filterTheme .= "</select>";
 
         $list = "";
-        $filters = (self::returnIdPage() == 1) ? "
+        $filters = (self::getIdPage() == 1) ? "
             <div class='sort_list'>
                 $filterPriority $filterTheme
             </div>
@@ -164,6 +169,14 @@ class TaskView extends View{
         $list .= "</ul>";
 
         return  $list;
+    }
+
+    public function createTask():string {
+        return "CREATE TASK";
+    }
+
+    public function connectionTask():string {
+        return "CONNECTION PAGE";
     }
 
     public function footer():string {

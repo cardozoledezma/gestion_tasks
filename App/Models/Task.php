@@ -36,6 +36,7 @@ class Task extends Model{
         $sqlReq .= (sizeof($where) >= 2) ? implode(' AND ',  $where) : $issetWhere;
 
         self::setSql($sqlReq);
+        var_dump($sqlReq);
 
         $query  = self::$connection->query(self::getSql());
         return $query->fetchAll();
