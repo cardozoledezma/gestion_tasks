@@ -6,6 +6,9 @@ abstract class View {
 
     protected static string $filename;
     private array $data;
+    public static string $charset;
+    public static string $favicon;
+    public static string $title;
 
     public function __construct(array $data){
         $this->data = $data;

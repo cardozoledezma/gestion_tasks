@@ -1,6 +1,10 @@
 <?php
+    
+    namespace App\Models;
 
-    include "../globals.php";
+    use App\Models\Task;
+
+    $tasks = new Task;
 
     $status = isset($_REQUEST['status'])    ? $_REQUEST['status']   : false;
     $checked= isset($_REQUEST['checked'])   ? $_REQUEST['checked']  : false;
@@ -14,18 +18,18 @@
         if($status === "done"){
             $sql        = "UPDATE task SET done = $checked WHERE id_task = $id;";
             $request    = $dbCo->prepare($sql);
-            $result     = $request->execute();
+            $return     = $request->execute();
 
-            $datas = [ "success" => ["message" => ($result) ? "success" : "error"] ];
-            echo json_encode($datas);
+            $data = [ "success" => ["message" => ($return) ? "success" : "error"] ];
+            echo json_encode($data);
         }
         if($status === "description"){
             $sql        = "UPDATE task SET description = '$value' WHERE id_task = $id;";
             $request    = $dbCo->prepare($sql);
-            $result     = $request->execute();
+            $return     = $request->execute();
 
-            $datas = [ "success" => ["message" => ($result) ? "success" : "error"] ];
-            echo json_encode($datas);
+            $data = [ "success" => ["message" => ($return) ? "success" : "error"] ];
+            echo json_encode($data);
         }
     }
 

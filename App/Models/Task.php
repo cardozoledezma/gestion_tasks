@@ -14,11 +14,18 @@ class Task extends Model{
         return $query->fetchAll();
     }
 
-    public function getAllTables():array {
-        $where = [];
+    public function getPriority():string {
+        return isset($_REQUEST['sort'])  ?  " t.priority=".$_REQUEST['sort']    : false;
+    }
 
-        $sortPriority   = isset($_REQUEST['sort'])  ?  $where[] = " t.priority=".$_REQUEST['sort']    : false;
-        $sortTheme      = isset($_REQUEST['theme']) ?  $where[] = " c.id_theme=".$_REQUEST['theme']   : false;
+    public function getSortTheme():string {
+        return isset($_REQUEST['theme']) ?  " c.id_theme=".$_REQUEST['theme']   : false;
+    }
+
+    public function getSortTables():array {
+        $where = [];
+        if(self::getPriority() != '') $where[] = self::getPriority();
+        if(self::getSortTheme() != '') $where[] = self::getSortTheme();
 
         $sqlReq = "SELECT *
         FROM task t
@@ -26,12 +33,25 @@ class Task extends Model{
             JOIN theme th USING (id_theme) ";
         $sqlReq .= (isset($_REQUEST['sort']) || isset($_REQUEST['theme'])) ? " WHERE " : " ";
         $issetWhere = (isset($_REQUEST['sort']) || isset($_REQUEST['theme'])) ? $where[0] : "";
-        $sqlReq .= (sizeof($where) > 1) ? implode(' AND ',  $where) : $issetWhere;
+        $sqlReq .= (sizeof($where) >= 2) ? implode(' AND ',  $where) : $issetWhere;
 
         self::setSql($sqlReq);
 
         $query  = self::$connection->query(self::getSql());
         return $query->fetchAll();
+    }
+
+    public function updateTable(int $id, int $checked):bool {
+        self::setSql("UPDATE task SET done = :done WHERE id_task = :id_task;");
+
+        $prepare = self::$connection->prepare(self::getSql());
+        $result = $prepare->execute(
+            [
+                'id_task' => $id,
+                'done' => $checked
+            ]
+        );
+        return $result;
     }
 
 }

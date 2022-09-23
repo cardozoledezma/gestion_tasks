@@ -95,4 +95,7 @@
         height: auto;
     }
     .formCreate{ grid-template-columns: 1fr 15% 30% 1fr; }
+
+    /* footer, main, .navbar, .header{display:none;} */
+    .xdebug-var-dump{ top: 0;position: absolute;z-index: 1000;background: white;padding: 1rem;border: solid blue .5rem; }
 }

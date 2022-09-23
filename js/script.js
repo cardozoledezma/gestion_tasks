@@ -11,6 +11,11 @@ document.querySelector('.message').addEventListener('click', function(event){
      }
 });
 
+if(document.querySelector('.xdebug-var-dump')) document.querySelector('.xdebug-var-dump').addEventListener('click', function(event){
+     this.style.display = "none";
+});
+
+
 document.querySelector('.ul-navbar').addEventListener('click', function (event) {
      this.classList.remove('active');
 });
@@ -100,11 +105,12 @@ check.forEach(element => element.addEventListener('change', function (event) {
 
      async function waitingForResponseChecked() {
           const response = await fetch("./includes/update.php?status=done&id=" + id_checked + "&checked=" + valid_checked);
-          const todoList = await response.json();
-          if(todoList['success'].message == 'success'){
+          const update = await response.json();
+          if(update['success'].message == 'success'){
                messageInfo('Update [done] effectué...');
                window.location.reload();
           }
+          else messageInfo('Update n\'a pas été effectué...');
      }
 
      waitingForResponseChecked();
@@ -130,25 +136,23 @@ check.forEach(element => element.addEventListener('change', function (event) {
 
 //      waitingForResponseUpdate();
 // }));
-const button = document.querySelectorAll(".btn-description");
-const form = document.querySelectorAll(".formAccueil");
-button.forEach(elem => elem.addEventListener('click', function (event) {
-     event.preventDefault();
-     messageInfo(this);
-     const serial = serialize(this);
-     const ID = this.id.match(/\d+/)[0];
-     messageInfo(serial);
+// const button = document.querySelectorAll(".btn-description");
+// const form = document.querySelectorAll(".formAccueil");
+// button.forEach(elem => elem.addEventListener('click', function (event) {
+//      event.preventDefault();
+//      messageInfo(this);
+//      const serial = serialize(this);
+//      const ID = this.id.match(/\d+/)[0];
+//      messageInfo(serial);
+//      messageInfo( "&id="+ ID + "&" + serial + "&themes=");
 
-
-     // messageInfo( "&id="+ ID + "&" + serial + "&themes=");
-
-     // async function waitingForResponseUpdate() {
-     //      const response = await fetch("./includes/update.php?status=description&id=" + ID + "&" + serial);
-     //      const update = await response.json();
-     //      if(update['success'].message == 'success'){
-     //           messageInfo('Update [description] effectué...');
-     //           // window.location.reload();
-     //      }
-     //      else messageInfo('Update n\'a pas été effectué...');
-     // }
-}));
+//      async function waitingForResponseUpdate() {
+//           const response = await fetch("./includes/update.php?status=description&id=" + ID + "&" + serial);
+//           const update = await response.json();
+//           if(update['success'].message == 'success'){
+//                messageInfo('Update [description] effectué...');
+//                window.location.reload();
+//           }
+//           else messageInfo('Update n\'a pas été effectué...');
+//      }
+// }));
