@@ -11,6 +11,19 @@ class Task extends Model{
 
     public function getAll():array {
         $query  = self::$connection->query("SELECT * FROM task");
+        var_dump($query);
+        return $query->fetchAll();
+    }
+
+    public function getAllUndone():array {
+        $query  = self::$connection->query("SELECT * FROM task WHERE done = 0;");
+        var_dump($query);
+        return $query->fetchAll();
+    }
+
+    public function getAllDone():array {
+        $query  = self::$connection->query("SELECT * FROM task WHERE done = 1;");
+        var_dump($query);
         return $query->fetchAll();
     }
 
@@ -24,14 +37,14 @@ class Task extends Model{
 
     public function getSortTables():array {
         $where = [];
-        if(self::getPriority() != '') $where[] = self::getPriority();
-        if(self::getSortTheme() != '') $where[] = self::getSortTheme();
+        if(self::getPriority() != '')   $where[] = self::getPriority();
+        if(self::getSortTheme() != '')  $where[] = self::getSortTheme();
 
         $sqlReq = "SELECT *
         FROM task t
             JOIN contain c USING (id_task)
-            JOIN theme th USING (id_theme) ";
-        $sqlReq .= (isset($_REQUEST['sort']) || isset($_REQUEST['theme'])) ? " WHERE " : " ";
+            JOIN theme th USING (id_theme)
+        WHERE done = 0 ";
         $issetWhere = (isset($_REQUEST['sort']) || isset($_REQUEST['theme'])) ? $where[0] : "";
         $sqlReq .= (sizeof($where) >= 2) ? implode(' AND ',  $where) : $issetWhere;
 

@@ -87,8 +87,9 @@ class TaskView extends View{
         $results = "";
         $tasks = new Task;
 
-        if(self::getIdPage() === 1) $results = $tasks->getAll();
-        if(self::getIdPage() === 3 || self::getIdPage() == 4) $results = $tasks->getSortTables();
+        if(self::getIdPage() === 1) $results = $tasks->getSortTables();
+        if(self::getIdPage() === 3) $results = $tasks->getAll();
+        if(self::getIdPage() == 4)  $results = $tasks->getAllDone();
 
         $themes = new Theme;
         $listTH = array_map( fn($t) => ["id_task"=>$t['id_task'], "id_theme"=>$t['id_theme'], "theme_name"=>$t['theme_name']], $themes->getListThemes() );
@@ -128,7 +129,7 @@ class TaskView extends View{
 
             $themeTask = [];
 
-            if (!$task['done'] && $task['id_task'] != $nextID){
+            if ($task['id_task'] != $nextID){
 
                 $list .= "<form merthod='GET' action='update.php?id=".$task['id_task']."' id='formAccueil".$task['id_task']."' name='formAccueil".$task['id_task']."' class='formAccueil'>";
                 $list .= $j == 0 ? "<li class='cellList refs'><div>Description</div><div>Priority</div><div>Date_reminder</div><div>Thème</div><div>ToDo</div><div>Save</div></li>" : "";
