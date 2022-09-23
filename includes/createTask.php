@@ -3,7 +3,6 @@
 $themes = array_map(fn($t) => ["name"=>$t['theme_name']], $themes->getThemes());
 
 ?>
-<div class="title">Liste des tâches en cours</div>
 <div class="divFormCreate">
     <form method="get" action="index.php?page=6" name="form-create-task" id="form-create-task" class="formCreate">
         <label for="nameTask" id="labelTask">Nom de la tâche</label>
@@ -38,17 +37,8 @@ $themes = array_map(fn($t) => ["name"=>$t['theme_name']], $themes->getThemes());
             ?>
         </select>
         <label for="selectColor" id="labelColor">Choix de la couleur de la tâche</label>
-        <select id="selectColor" name="selectColor" class="select-color">
-            <option readonly disabled>Choix de la couleur</option>
-            <option readonly disabled></option>
-            <?php
-
-                for($i=1;$i<=8;$i++){
-                    echo "<option value='$i'>$i</option>";
-                }
-
-            ?>
-        </select>
+        <input type="color" id="choiceColor" name="choiceColor" class="choice-color" value="">
+        <input type="hidden" id="selectColor" name="selectColor">
         <label for="inputDate" id="labelDate">Choix de la date de rappel</label>
         <input type="date" id="inputDate" name="inputDate">
         <input type="submit" value="Enregistrer la tâche" id="createSubmit">

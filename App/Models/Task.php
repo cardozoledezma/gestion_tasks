@@ -46,7 +46,7 @@ class Task extends Model{
         $sqlReq .= isset($_REQUEST['theme'])    ? " AND c.id_theme = ".self::getSortTheme() : "";
 
         self::setSql($sqlReq);
-        var_dump($sqlReq);
+        // var_dump($sqlReq);
 
         $query  = self::$connection->query(self::getSql());
         return $query->fetchAll();

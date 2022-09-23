@@ -277,7 +277,7 @@ body{
 .formCreate #labelColor{
     grid-area: 4/2;
 }
-.formCreate #selectColor{
+.formCreate #choiceColor{
     grid-area: 4/3;
     height: 2rem;
 }
