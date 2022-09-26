@@ -24,7 +24,7 @@ body{
     position: absolute;
     z-index: 500;
     width: 100%;
-    height: auto;
+    height: 0;
     padding: 2vh 0;
     background-color: rgb(238, 247, 159);
     overflow-y: auto;
@@ -142,6 +142,7 @@ body{
     height: 100%;
 }
 .header, .footer{ color: var(--white);}
+#mobile-icon{ margin-right: 1rem; }
 .nav-burger{
     font-size: 2.5rem;
     color: var(--white);
@@ -155,7 +156,6 @@ body{
 .fa.fa-question-circle{ background: none;color: red;font-size: 2rem; }
 .fa.fa-floppy-o{ font-size: 2rem;color: var(--bg-black); background-color: var(--white); }
 
-#mobile-icon{ margin-right: 1rem; }
 .formCreate{
     white-space: pre-line;
 }
@@ -203,6 +203,7 @@ body{
     justify-content: center;
     width: 100%;
     height: 100%;
+    font-size: 2.5rem;
 }
 .cellList .date{ font-weight: bold; }
 
@@ -230,6 +231,7 @@ body{
     font-size: 1.2rem;
     font-weight: bold;
 }
+.theme{ overflow-y: auto; }
 .btn-description:hover{
     background-color: var(--white);
     color: var(--bg-black);
@@ -241,7 +243,7 @@ body{
 }
 .priority span, .div-checkbox span{ padding-right: 1rem; }
 
-.divFormCreate{
+.divFormCreate, .pageConnexion{
     background-color: #e6f2b6;
 }
 .formCreate{
@@ -249,8 +251,8 @@ body{
     padding: 2rem;
     height: 60vh;
     display: grid;
-    grid-template-columns: 1fr 50% 50% 1fr;
-    grid-template-rows: 6% 55% repeat(3, 6%) 15%;
+    grid-template-columns: 1fr 30% 30% 1fr;
+    grid-template-rows: 6% 55% repeat(3, 7%) 15%;
 }
 .formCreate #labelTask{
     grid-area: 1/2;
@@ -276,7 +278,7 @@ body{
 .formCreate #labelColor{
     grid-area: 4/2;
 }
-.formCreate #selectColor{
+.formCreate #choiceColor{
     grid-area: 4/3;
     height: 2rem;
 }
@@ -285,7 +287,7 @@ body{
 }
 .formCreate #inputDate{
     grid-area: 5/3;
-    height: 2rem;
+    height: 2.5rem;
 }
 .formCreate #createSubmit{
     grid-area: 6/3;
@@ -298,6 +300,38 @@ body{
     color: var(--white);
 }
 #iQuestion{ border-radius: 2rem;width: 1.5rem;height: 1.5rem; }
+.pageConnexion{
+    height: 20vh;
+}
+#formConnexion {
+    margin-top: 2rem;
+    padding: 2rem;
+    display: grid;
+    align-items: center;
+    justify-content: space-between;
+    grid-template-columns: 1fr 25rem 25rem 1fr;
+    gap: 3rem;
+}
+#formConnexion #logUser{
+    grid-area: 2/2;
+    width: 25rem;
+    text-align: center;
+}
+#formConnexion #passUser{
+    grid-area: 2/3;
+    width: 25rem;
+    text-align: center;
+}
+#formConnexion #btnConnexion, #formConnexion #btnInscription{
+    grid-area: 3/3;
+    width: 10rem;
+    height: 2rem;
+    align-self: flex-end;
+    justify-self: end;
+}
+#formConnexion #btnInscription{
+    justify-self: flex-start;
+}
 /***********/
 /** MODAL **/
 /***********/
@@ -356,6 +390,3 @@ a:hover{ text-decoration: none;color: red; }
 .error_404{ font-weight: bold;font-size: 10rem; }
 .error_404 img{ width: 100%; }
 .message_error_404{ display:flex;align-items: center;justify-content: center;font-size: 175%;font-weight: bold; }
-
-.xdebug-error.xe-warning{ position: absolute; z-index: 10000; background: yellow;border: solid red 2px;padding: 1rem;margin: 150px 0 0 -90vw;font-size: 1.5rem; }
-.xdebug-error.xe-uncaught-exception{ position: absolute; z-index: 10020; background: yellow;border: solid red 2px;padding: 1rem;margin: 50px 0 0 0;font-size: 1.5rem; }

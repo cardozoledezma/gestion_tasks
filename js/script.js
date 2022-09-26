@@ -11,6 +11,20 @@ document.querySelector('.message').addEventListener('click', function(event){
      }
 });
 
+if(parameter('dir') == 2){
+     let selectColor;
+     let colors = document.querySelector('.choice-color');
+     let defaultColor = "#f6b73c";
+     colors.value = defaultColor;
+     colors.addEventListener("change", function(event){
+          document.getElementById('selectColor').value =  event.target.value;
+     });
+}
+
+if(document.querySelector('.xdebug-var-dump')) document.querySelector('.xdebug-var-dump').addEventListener('click', function(event){
+     this.style.display = "none";
+});
+
 document.querySelector('.ul-navbar').addEventListener('click', function (event) {
      this.classList.remove('active');
 });
@@ -67,7 +81,10 @@ if(document.getElementById('form-create-task')){
                     if(i === 3){
                          formElements[h] = getSelectValues(this.children[i]).join(" ");
                     }
-                    else formElements[h] = this.children[i].value;h++;
+                    else{
+                         formElements[h] = this.children[i].value;
+                         h++;
+                    }
                }
           }
           if(formElements.length < 5){
@@ -82,7 +99,6 @@ if(document.getElementById('form-create-task')){
                const todoList = await response.json();
                console.table(todoList);
                if(todoList['success'].message == 'success'){
-                    messageInfo('Insert [task] effectué...');
                     window.location.reload();
                }
                else messageInfo(todoList);
@@ -100,36 +116,36 @@ check.forEach(element => element.addEventListener('change', function (event) {
 
      async function waitingForResponseChecked() {
           const response = await fetch("./includes/update.php?status=done&id=" + id_checked + "&checked=" + valid_checked);
-          const todoList = await response.json();
-          if(todoList['success'].message == 'success'){
-               messageInfo('Update [done] effectué...');
+          const update = await response.json();
+          if(update['success'].message == 'success'){
                window.location.reload();
           }
+          else messageInfo('Update n\'a pas été effectué...');
      }
 
      waitingForResponseChecked();
 }));
 
 /*** Action to update cell "description" ***/
-// const description = document.querySelectorAll('.btn-description');
-// description.forEach(element => element.addEventListener('click', function (event) {
-//      const id_description = this.id.match(/\d+/)[0];
-//      const text_description = document.getElementById("id-description"+id_description).value;
-//      const serial = serializer(this.parent);
-//      messageInfo(element);
-//
-//      async function waitingForResponseUpdate() {
-//           const response = await fetch("./includes/update.php?status=description&id=" + id_description + "&value=" + text_description);
-//           const todoList = await response.json();
-//           if(todoList['success'].message == 'success'){
-//                messageInfo('Update [description] effectué...');
-//                // window.location.reload();
-//           }
-//           else messageInfo('Update n\'a pas été effectué...');
-//      }
+const description = document.querySelectorAll('.btn-description');
+description.forEach(element => element.addEventListener('click', function (event) {
+     const id_description = this.id.match(/\d+/)[0];
+     const text_description = document.getElementById("id-description"+id_description).value;
+     const serial = serializer(this.parent);
+     messageInfo(element);
 
-//      waitingForResponseUpdate();
-// }));
+     async function waitingForResponseUpdate() {
+          const response = await fetch("./includes/update.php?status=description&id=" + id_description + "&value=" + text_description);
+          const update = await response.json();
+          if(update['success'].message == 'success'){
+               messageInfo('Update [description] effectué...');
+               window.location.reload();
+          }
+          else messageInfo('Update n\'a pas été effectué...');
+     }
+
+     waitingForResponseUpdate();
+}));
 const button = document.querySelectorAll(".btn-description");
 const form = document.querySelectorAll(".formAccueil");
 button.forEach(elem => elem.addEventListener('click', function (event) {
@@ -138,17 +154,15 @@ button.forEach(elem => elem.addEventListener('click', function (event) {
      const serial = serialize(this);
      const ID = this.id.match(/\d+/)[0];
      messageInfo(serial);
+     messageInfo( "&id="+ ID + "&" + serial + "&themes=");
 
-
-     // messageInfo( "&id="+ ID + "&" + serial + "&themes=");
-
-     // async function waitingForResponseUpdate() {
-     //      const response = await fetch("./includes/update.php?status=description&id=" + ID + "&" + serial);
-     //      const update = await response.json();
-     //      if(update['success'].message == 'success'){
-     //           messageInfo('Update [description] effectué...');
-     //           // window.location.reload();
-     //      }
-     //      else messageInfo('Update n\'a pas été effectué...');
-     // }
+     async function waitingForResponseUpdate() {
+          const response = await fetch("./includes/update.php?status=description&id=" + ID + "&" + serial);
+          const update = await response.json();
+          if(update['success'].message == 'success'){
+               messageInfo('Update [description] effectué...');
+               window.location.href = window.location.href;
+          }
+          else messageInfo('Update n\'a pas été effectué...');
+     }
 }));
