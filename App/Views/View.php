@@ -9,6 +9,7 @@ abstract class View {
     public static string $charset;
     public static string $favicon;
     public static string $title;
+    public static array $titles;
 
     public function __construct(array $data){
         $this->data = $data;
