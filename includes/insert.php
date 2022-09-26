@@ -5,17 +5,21 @@
 
     use App\Models\Task as TaskModel;
 
-    $tasks = new TaskModel;
+    session_start();
 
-    $results = $tasks->insertTask();
+    if($_SESSION['mytoken'] == $_REQUEST['token']){
+            $tasks = new TaskModel;
 
-    if($results){
-        $results = $tasks->insertTheme();
+            $results = $tasks->insertTask();
+
+            if($results){
+                $results = $tasks->insertTheme();
+            }
+
+            header('Content-Type: application/json charset=UTF-8');
+            $datas = [ "success" => ["message" => ($results) ? "success" : "error"] ];
+            echo json_encode($datas);
     }
-
-    header('Content-Type: application/json charset=UTF-8');
-    $datas = [ "success" => ["message" => ($results) ? "success" : "error"] ];
-    echo json_encode($datas);
-
+    else var_dump($_SESSION['mytoken'] == $_REQUEST['token'], $_SESSION['mytoken'], $_REQUEST['token']);
 
 ?>

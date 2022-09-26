@@ -11,13 +11,11 @@ class Task extends Model{
 
     public function getAll():array {
         $query  = self::$connection->query("SELECT * FROM task");
-        var_dump($query);
         return $query->fetchAll();
     }
 
     public function getAllUndone():array {
         $query  = self::$connection->query("SELECT * FROM task WHERE done = 0;");
-        var_dump($query);
         return $query->fetchAll();
     }
 
@@ -60,19 +58,23 @@ class Task extends Model{
         return $results;
     }
     public static function insertTask():bool {
-        $sql = "INSERT INTO task (description, color, priority, date_reminder, done, id_users) VALUES (:description, :color, :priority, :date_reminder, :done, :id_users)";
-
-        $prepare = self::$connection->prepare($sql);
-        $results =  $prepare->execute(
-            [
-                "description"   => $_REQUEST['nameTask'],
-                "color"         => $_REQUEST['selectColor'],
-                "priority"      => $_REQUEST['selectPriority'],
-                "date_reminder" => $_REQUEST['inputDate'],
-                "done"          => 0,
-                "id_users"      => 0
+        $results = false;
+        try{
+            $sql = "INSERT INTO task (description, color, priority, date_reminder, done, id_users) VALUES (:description, :color, :priority, :date_reminder, :done, :id_users)";
+            $prepare = self::$connection->prepare($sql);
+            $results =  $prepare->execute(
+                [
+                    "description"   => $_REQUEST['nameTask'],
+                    "color"         => $_REQUEST['selectColor'],
+                    "priority"      => $_REQUEST['selectPriority'],
+                    "date_reminder" => $_REQUEST['inputDate'],
+                    "done"          => 0,
+                    "id_users"      => 0
                 ]
             );
+        }
+        catch (Exception $e) { echo json_encode(["error" => $e->getMessage()]);exit; }
+
         return $results;
     }
     public static function insertTheme():bool {

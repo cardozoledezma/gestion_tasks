@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Controllers\TaskController;
 use PDO;
 use FFI\Exception;
 
