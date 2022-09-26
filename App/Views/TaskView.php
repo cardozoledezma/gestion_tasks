@@ -181,7 +181,11 @@ class TaskView extends View{
 
     public function createTask():string {
 
-        $_SESSION['mytoken'] = md5(uniqid(mt_rand(), true));
+        if(isset($_SERVER['HTTP_REFERER'])) $_SESSION['mytoken'] = md5(uniqid(mt_rand(), true));
+        else{
+            header('HTTP/1.0 404 Not Found');
+            exit;
+        } 
 
         $themes = new Theme;
         $listTH = array_map( fn($t) => ["id_task"=>$t['id_task'], "id_theme"=>$t['id_theme'], "theme_name"=>$t['theme_name']], $themes->getListThemes() );
@@ -225,7 +229,7 @@ class TaskView extends View{
                 <label for="inputDate" id="labelDate">Choix de la date de rappel</label>
                 <input type="date" id="inputDate" name="inputDate">
                 <input type="hidden" id="token" name="token" value="'.$_SESSION['mytoken'].'">
-                <input type="submit" value="Enregistrer la tâche" id="createSubmit">
+                <input type="submit" value="Enregistrer la tâche" id="createSubmit" '.($_SERVER['HTTP_REFERER'] === null ? "disabled" : "").'>
             </form>
         </div>';
 
