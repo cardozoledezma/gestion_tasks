@@ -7,8 +7,7 @@ use App\Models\Task;
 class TaskController{
 
     public function index(){
-        $tasks = new Task;
-        $tasks->getAll();
+
     }
 
     public function create(){

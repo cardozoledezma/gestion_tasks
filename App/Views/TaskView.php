@@ -6,7 +6,6 @@ use App\Models\Theme;
 
 class TaskView extends View{
     public function __construct(){
-
         self::$filename = "App\Pages\index.html";
         static::$charset = "UTF-8";
         static::$favicon = "favicon.png";
@@ -181,6 +180,9 @@ class TaskView extends View{
     }
 
     public function createTask():string {
+
+        $_SESSION['mytoken'] = md5(uniqid(mt_rand(), true));
+
         $themes = new Theme;
         $listTH = array_map( fn($t) => ["id_task"=>$t['id_task'], "id_theme"=>$t['id_theme'], "theme_name"=>$t['theme_name']], $themes->getListThemes() );
         $themes = array_map(fn($t) => ["name"=>$t['theme_name']], $themes->getThemes());
@@ -222,9 +224,11 @@ class TaskView extends View{
                 <input type="hidden" id="selectColor" name="selectColor">
                 <label for="inputDate" id="labelDate">Choix de la date de rappel</label>
                 <input type="date" id="inputDate" name="inputDate">
+                <input type="hidden" id="token" name="token" value="'.$_SESSION['mytoken'].'">
                 <input type="submit" value="Enregistrer la tâche" id="createSubmit">
             </form>
         </div>';
+
         return $create;
     }
 

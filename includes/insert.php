@@ -7,19 +7,19 @@
 
     session_start();
 
-    if($_SESSION['HTTP_REFERER'] !== $_SERVER['HTTP_REFERER']) die("Action Impossible le HTTP_REFERER ne correspond pas");
+    if($_SESSION['mytoken'] == $_REQUEST['token']){
+            $tasks = new TaskModel;
 
-    $tasks = new TaskModel;
+            $results = $tasks->insertTask();
 
-    $results = $tasks->insertTask();
+            if($results){
+                $results = $tasks->insertTheme();
+            }
 
-    if($results){
-        $results = $tasks->insertTheme();
+            header('Content-Type: application/json charset=UTF-8');
+            $datas = [ "success" => ["message" => ($results) ? "success" : "error"] ];
+            echo json_encode($datas);
     }
-
-    header('Content-Type: application/json charset=UTF-8');
-    $datas = [ "success" => ["message" => ($results) ? "success" : "error"] ];
-    echo json_encode($datas);
-
+    else var_dump($_SESSION['mytoken'] == $_REQUEST['token'], $_SESSION['mytoken'], $_REQUEST['token']);
 
 ?>

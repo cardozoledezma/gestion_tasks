@@ -6,7 +6,7 @@ use App\Controllers\TaskController;
 use PDO;
 use FFI\Exception;
 
-abstract class Model extends TaskController{
+abstract class Model{
     protected static ?PDO $connection = null;
     protected static $dbOptions = [ PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC ];
 
