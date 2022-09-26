@@ -1,18 +1,19 @@
 <?php
 
-$page_connexion = "
-<div class='title'>Page de connexion</div>
-    <div class='pageConnexion'>
-    <form merthod='POST' action='bddConnexion.php' id='formConnexion' name='formConnexion'>
-    <ul>
-        <li><input type='text'></li>
-        <li><input type='password'></li>
-        <li><input type='button'></li>
-    </ul>
-    </form>
-</div>
-";
 
-echo $page_connexion;
+require_once "../App/Models/Model.php";
+require_once "../App/Models/Task.php";
+
+use App\Models\Task as TaskModel;
+
+session_start();
+
+$tasks = new TaskModel;
+
+if($_SERVER['HTTP_REFERER']) $results = $tasks->createConnection();
+
+if($results) $_SESSION['login'] =  $results;
+
+header("Refresh:2; url=".$_SERVER['HTTP_REFERER']);
 
 ?>

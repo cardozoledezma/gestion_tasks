@@ -69,44 +69,44 @@ if(window.innerWidth >= 1024){
 
 
 /*** Action to create a task ***/
-if(document.getElementById('form-create-task')){
-     const formCreate = document.getElementById('form-create-task');
-     formCreate.addEventListener('submit',function(event){
-          event.preventDefault();
+// if(document.getElementById('form-create-task')){
+//      const formCreate = document.getElementById('form-create-task');
+//      formCreate.addEventListener('submit',function(event){
+//           event.preventDefault();
 
-          let h = 0, formElements = [];
-          for(let i=0;i<this.children.length;i++){
-               if(this.children[i].id.match(/label|createSubmit/g) == null && this.children[i].value.length != 0){
-                    console.log(i + "->");
-                    if(i === 3){
-                         formElements[h] = getSelectValues(this.children[i]).join(" ");
-                    }
-                    else{
-                         formElements[h] = this.children[i].value;
-                         h++;
-                    }
-               }
-          }
-          if(formElements.length < 5){
-               messageInfo("Erreur un champ n'est pas rempli ! [" + formElements.length + "]");
-               return false;
-          }
-          console.table(formElements);
-          const serializer = serialize(this);
-          messageInfo(serializer);
-          async function waitingForResponseInsert() {
-               const response = await fetch("./includes/insert.php?" + serializer);
-               const todoList = await response.json();
-               console.table(todoList);
-               if(todoList['success'].message == 'success'){
-                    window.location.reload();
-               }
-               else messageInfo(todoList);
-          }
+//           let h = 0, formElements = [];
+//           for(let i=0;i<this.children.length;i++){
+//                if(this.children[i].id.match(/label|createSubmit/g) == null && this.children[i].value.length != 0){
+//                     console.log(i + "->");
+//                     if(i === 3){
+//                          formElements[h] = getSelectValues(this.children[i]).join(" ");
+//                     }
+//                     else{
+//                          formElements[h] = this.children[i].value;
+//                          h++;
+//                     }
+//                }
+//           }
+//           if(formElements.length < 5){
+//                messageInfo("Erreur un champ n'est pas rempli ! [" + formElements.length + "]");
+//                return false;
+//           }
+//           console.table(formElements);
+//           const serializer = serialize(this);
+//           messageInfo(serializer);
+//           async function waitingForResponseInsert() {
+//                const response = await fetch("./includes/insert.php?" + serializer);
+//                const todoList = await response.json();
+//                console.table(todoList);
+//                if(todoList['success'].message == 'success'){
+//                     window.location.reload();
+//                }
+//                else messageInfo(todoList);
+//           }
 
-          waitingForResponseInsert();
-     });
-}
+//           waitingForResponseInsert();
+//      });
+// }
 
 /*** Action to update cell "done" ***/
 const check = document.querySelectorAll('.id-checkbox');

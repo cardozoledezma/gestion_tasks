@@ -60,14 +60,15 @@ class Task extends Model{
     public static function insertTask():bool {
         $results = false;
         try{
+            var_dump($_POST);
             $sql = "INSERT INTO task (description, color, priority, date_reminder, done, id_users) VALUES (:description, :color, :priority, :date_reminder, :done, :id_users)";
             $prepare = self::$connection->prepare($sql);
             $results =  $prepare->execute(
                 [
-                    "description"   => $_REQUEST['nameTask'],
-                    "color"         => $_REQUEST['selectColor'],
-                    "priority"      => $_REQUEST['selectPriority'],
-                    "date_reminder" => $_REQUEST['inputDate'],
+                    "description"   => $_POST['nameTask'],
+                    "color"         => $_POST['selectColor'],
+                    "priority"      => $_POST['selectPriority'],
+                    "date_reminder" => $_POST['inputDate'],
                     "done"          => 0,
                     "id_users"      => 0
                 ]
@@ -101,6 +102,21 @@ class Task extends Model{
             catch (Exception $e) { echo json_encode(["error" => $e->getMessage()]);exit; }
         }
         return $results;
+    }
+    public function createConnection(){
+        // var_dump($_REQUEST, $_SESSION, $_POST);
+        try{
+            $sql = "SELECT user_name, password FROM users WHERE user_name = :user_name AND password = :password;";
+            $requete = self::$connection->prepare($sql);
+            $requete->execute([
+                "user_name" => $_POST['logUser'],
+                "password"  => $_POST['passUser']
+            ]);
+
+            return $requete->fetchAll();
+        }
+        catch (Exception $e) { echo  $e->getMessage(); }
+
     }
 
 }
