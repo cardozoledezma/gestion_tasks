@@ -11,13 +11,11 @@ class Task extends Model{
 
     public function getAll():array {
         $query  = self::$connection->query("SELECT * FROM task");
-        var_dump($query);
         return $query->fetchAll();
     }
 
     public function getAllUndone():array {
         $query  = self::$connection->query("SELECT * FROM task WHERE done = 0;");
-        var_dump($query);
         return $query->fetchAll();
     }
 

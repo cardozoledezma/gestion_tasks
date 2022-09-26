@@ -5,6 +5,10 @@
 
     use App\Models\Task as TaskModel;
 
+    session_start();
+
+    if($_SESSION['HTTP_REFERER'] !== $_SERVER['HTTP_REFERER']) die("Action Impossible le HTTP_REFERER ne correspond pas");
+
     $tasks = new TaskModel;
 
     $results = $tasks->insertTask();

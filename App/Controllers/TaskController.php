@@ -2,13 +2,13 @@
 
 namespace App\Controllers;
 use App\Models\Product;
+use App\Models\Task;
 
-
-class ProductController{
+class TaskController{
 
     public function index(){
-        $product = new Product;
-        $product->getAll();
+        $tasks = new Task;
+        $tasks->getAll();
     }
 
     public function create(){

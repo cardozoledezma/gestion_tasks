@@ -13,13 +13,13 @@ class TaskView extends View{
         static::$title = "Gestion des tâches";
 
         self::setData([
-            "meta" => self::meta(),
-            "header" => self::head(),
-            "navigation" => self::nav(),
-            "message" => self::message(),
+            "meta"      => self::meta(),
+            "header"    => self::head(),
+            "navigation"=> self::nav(),
+            "message"   => self::message(),
             "titlemain" => self::title(),
-            "main" => self::getpage(),
-            "footer" => self::footer(),
+            "main"      => self::getpage(),
+            "footer"    => self::footer(),
         ]);
         self::getContent();
         self::getHtml();
@@ -27,9 +27,9 @@ class TaskView extends View{
     }
 
     public function getPage():string {
-        if(self::getIdPage() == 2) return self::createTask();
-        elseif((self::getIdPage() == 5)) return self::connectionTask();
-        else return self::main();
+        if(self::getIdPage() === 2)         return self::createTask();
+        elseif((self::getIdPage() === 5))   return self::connectionTask();
+        else                                return self::main();
     }
     public function getIdPage():int {
         return isset($_REQUEST['dir']) ? $_REQUEST['dir'] : 1;
@@ -115,7 +115,7 @@ class TaskView extends View{
         $filterTheme .= "</select>";
 
         $list = "";
-        $filters = (self::getIdPage() == 1) ? "
+        $filters = self::getIdPage() == 1 ? "
             <div class='sort_list'>
                 $filterPriority $filterTheme
             </div>
@@ -132,7 +132,10 @@ class TaskView extends View{
             if ($task['id_task'] != $nextID){
 
                 $list .= "<form merthod='GET' action='update.php?id=".$task['id_task']."' id='formAccueil".$task['id_task']."' name='formAccueil".$task['id_task']."' class='formAccueil'>";
-                $list .= $j == 0 ? "<li class='cellList refs'><div>Description</div><div>Priority</div><div>Date_reminder</div><div>Thème</div><div>ToDo</div><div>Save</div></li>" : "";
+
+                $titleCells = self::getIdPage() !== 1 ? "<div>ToDo</div><div>Save</div>" : "";
+
+                $list .= $j == 0 ? "<li class='cellList refs'><div>Description</div><div>Priority</div><div>Date_reminder</div><div>Thème</div>$titleCells</li>" : "";
                 $list .= "  <li class='cellList' style='background-color: ".$task['color'].";'>";
                 $list .= "      <div class='description'><input type='text' value='".$task['description']."' id='id-description".$task['id_task']."' name='id-description".$task['id_task']."' ></div>";
                 $list .= "      <div class='priority'>";
@@ -152,14 +155,19 @@ class TaskView extends View{
 
                 foreach($listTH as $th){
                     $theme [] = "theme".$i;
-                    if($th['id_task'] == $task['id_task']) $themeTask[] = "<label for='theme".$task['id_task']."'>".$th['theme_name']."</label><input type='checkbox' id='theme".$i."' name='theme".$i."' value='".$th['id_theme']."' checked><br>";
+                    $disabled = self::getIdPage() == 1 ? "disabled" : "";
+                    if($th['id_task'] == $task['id_task']) $themeTask[] = "<label for='theme".$task['id_task']."'>".$th['theme_name']."</label><input type='checkbox' id='theme".$i."' name='theme".$i."' value='".$th['id_theme']."' checked $disabled><br>";
                     $i++;
                 }
 
                 $list .= implode(" ", $themeTask);
                 $list .= "      </div>";
-                $list .= "      <div class='div-checkbox'><span>Valider</span><input type='checkbox' value='".$task['id_task']."' id='id-checkbox".$task['id_task']."' name='id-checkbox".$task['id_task']."' class='id-checkbox' ".($task['done'] ? "checked" : "")."/></div>";
-                $list .= "      <div class='div-description'><button class='btn-description' id='btn-description".$task['id_task']."' name='btn-description".$task['id_task']."'><i class='fa fa-floppy-o' aria-hidden='true'></i></button></div>";
+
+                if(self::getIdPage() !== 1){
+                    $list .= "      <div class='div-checkbox'><span>Valider</span><input type='checkbox' value='".$task['id_task']."' id='id-checkbox".$task['id_task']."' name='id-checkbox".$task['id_task']."' class='id-checkbox' ".($task['done'] ? "checked" : "")."/></div>";
+                    $list .= "      <div class='div-description'><button class='btn-description' id='btn-description".$task['id_task']."' name='btn-description".$task['id_task']."'><i class='fa fa-floppy-o' aria-hidden='true'></i></button></div>";
+                }
+
                 $list .= "  </li>";
                 $list .= "</form>";
                 $j++;
