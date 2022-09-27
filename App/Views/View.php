@@ -7,10 +7,22 @@ abstract class View {
     public string $favicon;
     public string $title;
 
+<<<<<<< HEAD
     public function __construct(string $charset = "", string $favicon = "", string $title = ""){
         $this->charset = $charset;
         $this->favicon = $favicon;
         $this->title = $title;
+=======
+    protected static string $filename;
+    private array $data;
+    public static string $charset;
+    public static string $favicon;
+    public static string $title;
+    public static array $titles;
+
+    public function __construct(array $data){
+        $this->data = $data;
+>>>>>>> 6c3bb4b8d99da435572cc979e91136fec9eff0c3
     }
 
     // Getters & Setters

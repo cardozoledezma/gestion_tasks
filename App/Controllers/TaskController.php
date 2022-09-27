@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+<<<<<<< HEAD
 use App\Pages\Page;
 use App\Models\Task;
 use App\Models\Theme;
@@ -20,6 +21,18 @@ class TaskController{
 
         /*** REQUEST ONGOING TASKS ***/
         $results = $tasks->getAll();
+=======
+use App\Models\Product;
+use App\Models\Task;
+use App\Models\Theme;
+
+class TaskController{
+
+    public function index(){
+        $tasks = new Task;
+        $themes = new Theme;
+
+>>>>>>> 6c3bb4b8d99da435572cc979e91136fec9eff0c3
     }
 
     public function create(){
