@@ -1,6 +1,15 @@
 <?php
 
 namespace App\Views;
+<<<<<<< HEAD
+
+class TaskView extends View{
+    public string $charset;
+    public string $favicon;
+    public string $title;
+
+    
+=======
 use App\Models\Task;
 use App\Models\Theme;
 
@@ -274,6 +283,7 @@ class TaskView extends View{
         </body>
         </html>';
     }
+>>>>>>> 6c3bb4b8d99da435572cc979e91136fec9eff0c3
 
 }
 

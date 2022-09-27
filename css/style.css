@@ -26,8 +26,14 @@ body{
     width: 100%;
     height: 0;
     padding: 2vh 0;
+<<<<<<< HEAD
+    background-color: var(--light-yellow);
+    overflow-y: auto;
+    font-size: 2rem;
+=======
     background-color: rgb(238, 247, 159);
     overflow-y: auto;
+>>>>>>> 0a6b1e801f5e10686854c690064a59f70ed58a57
 }
 .pInfo{
     color: white;
@@ -37,6 +43,18 @@ body{
     font-weight: bold;
     background-color: rgb(236, 131, 124);
 }
+<<<<<<< HEAD
+.infoReferer{
+    background-color: var(--light-yellow);
+    color: blue;
+    font-size: 1.5rem;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+=======
+>>>>>>> 0a6b1e801f5e10686854c690064a59f70ed58a57
 
 @keyframes slideDown {
     0%{ height : 0vh; }
@@ -390,3 +408,9 @@ a:hover{ text-decoration: none;color: red; }
 .error_404{ font-weight: bold;font-size: 10rem; }
 .error_404 img{ width: 100%; }
 .message_error_404{ display:flex;align-items: center;justify-content: center;font-size: 175%;font-weight: bold; }
+<<<<<<< HEAD
+
+.xdebug-error.xe-warning{ position: absolute; z-index: 10000; background: yellow;border: solid red 2px;padding: 1rem;margin: 150px 0 0 0;font-size: 1.5rem; }
+.xdebug-error.xe-uncaught-exception{ position: absolute; z-index: 10020; background: yellow;border: solid red 2px;padding: 1rem;margin: 50px 0 0 0;font-size: 1.5rem; }
+=======
+>>>>>>> 6c3bb4b8d99da435572cc979e91136fec9eff0c3

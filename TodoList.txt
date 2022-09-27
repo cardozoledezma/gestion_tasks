@@ -30,3 +30,18 @@
   - Modal pour notifier si partage d'une tâche par un tierce
     membre (afficher si la date est   valide)
   - Case à cocher si refusée (vérifier le protocole)
+
+
+
+
+var_dump("A TESTER -----------------------",sizeof($list) == sizeof($result));
+
+        /*
+            'id_task' => string '1' (length=1)
+            'description' => string 'Bact smear-eye' (length=14)
+            'color' => string '#fd1322' (length=7)
+            'priority' => string '3' (length=1)
+            'date_reminder' => string '2022-09-07' (length=10)
+            'done' => string '1' (length=1)
+            'id_users' => string '2' (length=1)
+        */
